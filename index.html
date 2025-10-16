@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Where Do Australia's Threatened Animals Live?</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f7f4ef; /* soft neutral beige */
+      color: #222;
+      margin: 40px;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #2b2b2b;
+    }
+    p.subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: 8px auto 30px;
+      color: #555;
+    }
+    #intro {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 40px;
+      color: #444;
+      font-size: 15px;
+    }
+    #vis {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 35px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 45px;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Where Do Australia's Threatened Animals Live?</h1>
+<p class="subtitle">
+  🐨🦜🐍🐠 Select a species group and click a state to explore its threatened species by conservation category.
+</p>
+
+<div id="intro">
+  Australia is home to some of the world’s most unique wildlife, but habitat loss, climate change, and invasive species have placed many animals at risk.  
+  This visualisation reveals where threatened species are most concentrated — highlighting states with critical conservation priorities and the categories in which species face the greatest danger.
+</div>
+
+<div id="vis"></div>
+
+<script type="text/javascript">
+const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "params": [
+    {
+      "name": "species_group",
+      "value": "All species",
+      "bind": {
+        "input": "select",
+        "options": ["All species","Mammals","Birds","Reptiles","Amphibians","Fish","Invertebrates"],
+        "labels": ["All species","Mammals","Birds","Reptiles","Amphibians","Fish","Invertebrates"],
+        "name": "🐨🦜🐍🐠  Species group: "
+      }
+    },
+    {"name": "selected_state","value": "Australia"}
+  ],
+
+  "vconcat": [
+    // 🗺️ MAP
+    {
+      "width": 600,
+      "height": 400,
+      "projection": {"type": "mercator"},
+      "data": {
+        "url": "australia.json",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {"url": "threatened_species.csv"},
+            "key": "state",
+            "fields": ["state","group","count"]
+          }
+        },
+        {"filter": "species_group == 'All species' || datum.group == species_group"},
+        {"aggregate":[{"op":"sum","field":"count","as":"total"}],"groupby":["properties.STATE_NAME"]}
+      ],
+      "params": [
+        {
+          "name": "state_click",
+          "select": {"type": "point", "fields": ["properties.STATE_NAME"]},
+          "on": "click"
+        }
+      ],
+      "layer": [
+        // Base map layer
+        {
+          "mark": {"type":"geoshape","stroke":"white"},
+          "encoding": {
+            "color": {
+              "field":"total",
+              "type":"quantitative",
+              "title":"Threatened Species",
+              "scale":{"scheme":"reds"}
+            },
+            "strokeWidth": {
+              "condition":{"param":"state_click","empty":false,"value":2},
+              "value":0.5
+            },
+            "tooltip":[
+              {"field":"properties.STATE_NAME","title":"State"},
+              {"field":"total","title":"Species Count"}
+            ],
+            "opacity":{
+              "condition":{"param":"state_click","empty":false,"value":1},
+              "value":0.9
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {"lon": 117, "lat": -25, "label": "WA: Highest count"},
+              {"lon": 150.5, "lat": -33.5, "label": "NSW: High mammal loss"},
+              {"lon": 138, "lat": -35, "label": "SA: Fewer species but rising risk"}
+            ]
+          },
+          "mark": {"type": "text", "fontSize": 12, "fill": "#333", "dx": 0, "dy": -6, "fontWeight":"500"},
+          "encoding": {
+            "longitude": {"field": "lon"},
+            "latitude": {"field": "lat"},
+            "text": {"field": "label"}
+          }
+        }
+      ],
+      "config":{"view":{"stroke":"transparent"},"legend":{"orient":"bottom"}}
+    },
+
+    // 📊 BAR CHART + DYNAMIC TEXT
+    {
+      "vconcat": [
+        {
+          "width":600,
+          "height":300,
+          "data":{"url":"threatened_species.csv"},
+          "transform":[
+            {"filter": "species_group == 'All species' || datum.group == species_group"},
+            {"filter": "datum.state == selected_state || selected_state == 'Australia'"},
+            {"aggregate":[{"op":"sum","field":"count","as":"total"}],"groupby":["status"]}
+          ],
+          "mark":{"type":"bar","cornerRadiusTopLeft":4,"cornerRadiusTopRight":4, "cursor":"pointer"},
+          "encoding":{
+            "x":{"field":"status","type":"ordinal","title":"Threat Category"},
+            "y":{"field":"total","type":"quantitative","title":"Species Count"},
+            "color":{
+              "field":"status","type":"nominal",
+              "scale":{
+                "domain":["Critically Endangered","Endangered","Vulnerable"],
+                "range":["#b30000","#e34a33","#fc8d59"]
+              },
+              "legend":null
+            },
+            "tooltip":[{"field":"status"},{"field":"total","title":"Count"}]
+          },
+          "title":{
+            "text":["Threatened Species by Category",
+                    "State: {selected_state} | Group: {species_group}"],
+            "fontSize":16,
+            "anchor":"middle"
+          },
+          "config":{"style":{"cell":{"stroke":"transparent"}}},
+          "transition":{"duration":600,"easing":"ease-in-out"}
+        },
+        // Dynamic annotation box
+        {
+          "width":600,
+          "height":60,
+          "data":{"url":"threatened_species.csv"},
+          "transform":[
+            {"filter": "species_group == 'All species' || datum.group == species_group"},
+            {"filter": "datum.state == selected_state || selected_state == 'Australia'"},
+            {"aggregate":[{"op":"sum","field":"count","as":"total"}],"groupby":["status"]},
+            {"window":[{"op":"max","field":"total","as":"maxCount"}]},
+            {"filter":"datum.total == datum.maxCount"}
+          ],
+          "mark":{"type":"text","align":"center","baseline":"middle","fontSize":14,"fontWeight":"500"},
+          "encoding":{
+            "text":{
+              "signal": "selected_state == 'Australia' ? 'Across Australia, most threatened species are ' + datum.status + '.' : 'In ' + selected_state + ', most threatened species are ' + datum.status + '.'"
+            },
+            "color":{"value":"#333"}
+          }
+        }
+      ]
+    }
+  ],
+
+  "config":{
+    "font":"Open Sans",
+    "axis":{"labelFontSize":12,"titleFontSize":13},
+    "legend":{"labelFontSize":12,"titleFontSize":12}
+  }
+};
+
+vegaEmbed('#vis', spec, {actions:false}).then(result=>{
+  const view = result.view;
+  view.addSignalListener('state_click', (name,value)=>{
+    const selected = value?.length ? value[0]['properties.STATE_NAME'] : 'Australia';
+    view.signal('selected_state', selected).runAsync();
+  });
+});
+</script>
+
+<footer>
+  Data: Australian Government – Department of Climate Change, Energy, the Environment and Water (EPBC Act lists).  
+  Author: Your Name | 2025 | FIT3179 Data Visualisation 2
+</footer>
+
+</body>
+</html>
