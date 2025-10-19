@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 interface ClockData {
@@ -7,8 +7,13 @@ interface ClockData {
   color: string;
 }
 
-export const BiodiversityClock = () => {
+interface BiodiversityClockProps {
+  onAchievement?: () => void;
+}
+
+export const BiodiversityClock = ({ onAchievement }: BiodiversityClockProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
+  const [hasViewed, setHasViewed] = useState(false);
 
   useEffect(() => {
     if (!svgRef.current) return;
@@ -127,7 +132,16 @@ export const BiodiversityClock = () => {
     }
     rotate();
 
-  }, []);
+    // Trigger achievement after user views clock for 8 seconds
+    if (!hasViewed && onAchievement) {
+      const timer = setTimeout(() => {
+        setHasViewed(true);
+        onAchievement();
+      }, 8000);
+      return () => clearTimeout(timer);
+    }
+
+  }, [hasViewed, onAchievement]);
 
   return (
     <div className="flex flex-col items-center justify-center py-6">

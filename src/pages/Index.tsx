@@ -585,7 +585,7 @@ const Index = () => {
               <span className="text-2xl">🕐</span>
               The Biodiversity Clock
             </h3>
-            <BiodiversityClock />
+            <BiodiversityClock onAchievement={() => unlockAchievement('timeline_traveler')} />
           </div>
           
           <div className="chart-container">

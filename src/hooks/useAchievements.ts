@@ -26,15 +26,9 @@ const achievementDefinitions: Omit<Achievement, 'unlocked' | 'unlockedAt'>[] = [
     icon: '📊',
   },
   {
-    id: 'wildlife_advocate',
-    name: 'Wildlife Advocate',
-    description: 'Completed the pledge',
-    icon: '💚',
-  },
-  {
     id: 'timeline_traveler',
     name: 'Timeline Traveler',
-    description: 'Watched the full timeline animation',
+    description: 'Watched the biodiversity clock',
     icon: '⏳',
   },
   {

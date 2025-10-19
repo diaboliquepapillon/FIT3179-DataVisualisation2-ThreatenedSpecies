@@ -47,7 +47,7 @@ export const AnimatedIntro = ({ onComplete }: AnimatedIntroProps) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#568567] to-[#c5b79a] overflow-hidden"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-primary via-accent to-secondary overflow-hidden"
         >
           {/* Skip Button */}
           <Button
