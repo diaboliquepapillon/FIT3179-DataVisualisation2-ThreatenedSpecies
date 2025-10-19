@@ -18,54 +18,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Core colors - eco-inspired palette */
-    --background: 40 30% 95%;        /* #f5f2eb - warm beige */
-    --foreground: 25 40% 20%;        /* #4a3422 - deep brown */
-    --card: 0 0% 100%;               /* white */
-    --card-foreground: 25 40% 20%;
+    /* Modern professional color scheme */
+    --background: 210 20% 98%;       /* #f7f9fc - clean white-blue */
+    --foreground: 222 47% 11%;       /* #0f172a - slate 900 */
+    --card: 0 0% 100%;               /* pure white */
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 25 40% 20%;
+    --popover-foreground: 222 47% 11%;
     
-    /* Primary - sage green */
-    --primary: 140 25% 45%;          /* #568567 - sage green */
-    --primary-foreground: 0 0% 98%;
+    /* Primary - modern teal/green */
+    --primary: 173 58% 39%;          /* #2b9d88 - professional teal */
+    --primary-foreground: 0 0% 100%;
     
-    /* Secondary - coral red */
-    --secondary: 15 75% 60%;         /* #eb7963 - warm coral */
-    --secondary-foreground: 0 0% 98%;
+    /* Secondary - vibrant orange */
+    --secondary: 27 96% 61%;         /* #f97316 - modern orange */
+    --secondary-foreground: 0 0% 100%;
     
-    /* Accent - sand beige */
-    --accent: 35 35% 70%;            /* #c5b79a - sand beige */
-    --accent-foreground: 25 40% 20%;
+    /* Accent - purple */
+    --accent: 262 83% 58%;           /* #8b5cf6 - violet */
+    --accent-foreground: 0 0% 100%;
     
     /* Muted */
-    --muted: 38 20% 90%;
-    --muted-foreground: 30 10% 40%;  /* #555 equivalent */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
     
     /* Border */
-    --border: 35 15% 85%;
-    --input: 35 15% 85%;
-    --ring: 100 15% 32%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 173 58% 39%;
     
     /* Destructive */
-    --destructive: 0 70% 50%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Data visualization specific colors - eco palette */
-    --viz-sage: 140 25% 45%;         /* sage green */
-    --viz-coral: 15 75% 60%;         /* coral red */
-    --viz-sand: 35 35% 70%;          /* sand beige */
-    --viz-terracotta: 15 55% 50%;    /* terracotta */
-    --viz-eucalyptus: 155 30% 55%;   /* eucalyptus */
-    --viz-ochre: 35 60% 50%;         /* ochre */
-    --viz-ocean: 200 60% 50%;        /* ocean blue */
-    --viz-clay: 25 45% 40%;          /* clay brown */
-    
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(140 25% 45% / 0.1), hsl(35 35% 70% / 0.1));
-    --gradient-chapter: linear-gradient(to right, hsl(140 25% 45% / 0.05), hsl(15 75% 60% / 0.05));
+    /* Data visualization - modern vibrant palette */
+    --viz-teal: 173 58% 39%;         /* primary teal */
+    --viz-orange: 27 96% 61%;        /* vibrant orange */
+    --viz-purple: 262 83% 58%;       /* violet */
+    --viz-blue: 217 91% 60%;         /* bright blue */
+    --viz-green: 142 71% 45%;        /* emerald */
+    --viz-pink: 326 78% 66%;         /* pink */
+    --viz-amber: 38 92% 50%;         /* amber */
+    --viz-indigo: 239 84% 67%;       /* indigo */
   }
 }
 
@@ -350,6 +346,104 @@ All colors MUST be HSL.
   background: hsl(140 25% 35%);
 }
 
+/* Modern Card Styling */
+.modern-card {
+  @apply bg-white rounded-2xl shadow-sm border border-border/50 transition-all duration-300;
+}
+
+.modern-card:hover {
+  @apply shadow-lg border-primary/30 transform -translate-y-1;
+}
+
+/* Enhanced Section Spacing */
+.section-container {
+  @apply py-16 px-6 lg:px-8;
+}
+
+.section-tight {
+  @apply py-8 px-6 lg:px-8;
+}
+
+/* Typography Enhancements */
+.heading-display {
+  @apply text-4xl lg:text-5xl font-bold tracking-tight text-foreground;
+}
+
+.heading-section {
+  @apply text-2xl lg:text-3xl font-bold text-foreground mb-4;
+}
+
+.heading-card {
+  @apply text-xl font-semibold text-foreground;
+}
+
+.text-body {
+  @apply text-base text-muted-foreground leading-relaxed;
+}
+
+/* Interactive Elements */
+.btn-modern {
+  @apply px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+}
+
+.btn-primary-modern {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.btn-secondary-modern {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+}
+
+/* Stat Cards */
+.stat-card {
+  @apply bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border-2 border-primary/20;
+}
+
+/* Chart Container */
+.chart-container {
+  @apply bg-white rounded-2xl p-6 lg:p-8 shadow-md border border-border/50 hover:shadow-xl transition-all duration-300;
+}
+
+/* Filter Section */
+.filter-section {
+  @apply bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-2xl p-8 shadow-lg border-2 border-primary/20;
+}
+
+/* State Button */
+.state-button {
+  @apply px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 border-2;
+}
+
+.state-button-active {
+  @apply bg-primary text-primary-foreground border-primary shadow-md;
+}
+
+.state-button-inactive {
+  @apply bg-white text-foreground border-border hover:border-primary/50 hover:bg-primary/5;
+}
+
+/* Badge Modern */
+.badge-modern {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+}
+
+.badge-primary {
+  @apply bg-primary/10 text-primary border border-primary/20;
+}
+
+.badge-secondary {
+  @apply bg-secondary/10 text-secondary border border-secondary/20;
+}
+
+/* Gradient Backgrounds */
+.gradient-hero {
+  background: linear-gradient(135deg, hsl(173 58% 39% / 0.03) 0%, hsl(27 96% 61% / 0.03) 100%);
+}
+
+.gradient-section {
+  background: linear-gradient(180deg, transparent 0%, hsl(173 58% 39% / 0.02) 50%, transparent 100%);
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -357,5 +451,12 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
   }
 }

@@ -284,47 +284,72 @@ const Index = () => {
       />
 
       {/* Hero Section */}
-      <header className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[var(--gradient-hero)] opacity-60"></div>
+      <header className="relative overflow-hidden gradient-hero">
         <div className="container relative mx-auto px-6 lg:px-8 py-20 lg:py-28 max-w-7xl">
           <div className="text-center animate-fade-in">
-            <h1 className="text-5xl lg:text-7xl font-display font-bold text-foreground mb-6 leading-tight">
+            <div className="mb-6">
+              <span className="badge-modern badge-primary px-5 py-2.5">
+                🎓 FIT3179 Data Visualisation Project
+              </span>
+            </div>
+            <h1 className="heading-display mb-8">
               Where Do Australia's Threatened Animals Live?
             </h1>
-            <p className="text-2xl lg:text-3xl mb-6 animate-pulse-slow">
-              🐨 🦜 🐍 🐠
-            </p>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
+            <div className="flex justify-center gap-4 mb-8 text-4xl lg:text-5xl animate-pulse-slow">
+              <span>🐨</span>
+              <span>🦜</span>
+              <span>🐍</span>
+              <span>🐠</span>
+            </div>
+            <p className="text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-10">
               Australia is home to wildlife found nowhere else on Earth, but many species are fighting for survival. 
               Join us on an interactive journey through threatened species data to discover 
-              <strong className="text-foreground"> what's happening in your state</strong> and 
-              <strong className="text-foreground"> what you can do about it</strong>.
+              <strong className="text-primary font-semibold"> what's happening in your state</strong> and 
+              <strong className="text-primary font-semibold"> what you can do about it</strong>.
             </p>
-            <div className="inline-block px-6 py-3 bg-primary/10 border-2 border-primary/30 rounded-full text-sm font-semibold text-primary">
-              🎓 A data storytelling exploration for curious Australians
+            <div className="flex flex-wrap justify-center gap-3">
+              <div className="badge-modern badge-primary">
+                📊 Interactive Data Story
+            </div>
+              <div className="badge-modern badge-secondary">
+                🗺️ Explore All States
+              </div>
+              <div className="badge-modern bg-accent/10 text-accent border border-accent/20">
+                🌏 Real Conservation Data
+              </div>
             </div>
           </div>
         </div>
       </header>
 
       {/* Unified Filter Controls */}
-      <section id="visualisation" className="container mx-auto px-6 lg:px-8 py-8 max-w-7xl">
-        <div className="bg-card rounded-xl p-6 shadow-lg border-2 border-primary/20">
-          <h3 className="text-xl font-display font-bold text-foreground mb-6 flex items-center gap-2">
-            🔍 Explore & Filter Visualizations
-          </h3>
+      <section id="visualisation" className="container mx-auto section-tight max-w-7xl">
+        <div className="filter-section">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="bg-primary/10 p-3 rounded-xl">
+              <MapPin className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <h3 className="heading-section mb-0">
+                Explore & Filter Visualisations
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Select a species group and state to personalise your exploration
+              </p>
+            </div>
+          </div>
           
           {/* Species Group Filter */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between mb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between mb-8">
             <div className="flex items-center gap-4 flex-wrap">
-              <label htmlFor="group-filter" className="text-base font-bold text-foreground whitespace-nowrap">
-                Filter by Species Group:
+              <label htmlFor="group-filter" className="text-base font-semibold text-foreground whitespace-nowrap">
+                Species Group:
               </label>
               <Select value={selectedGroup} onValueChange={setSelectedGroup}>
-                <SelectTrigger className="w-72 bg-background shadow-md border-2 border-primary/30" aria-label="Select species group">
+                <SelectTrigger className="w-64 bg-white shadow-sm border-2 border-border hover:border-primary/50 transition-colors rounded-xl" aria-label="Select species group">
                   <SelectValue placeholder="Select species group" />
                 </SelectTrigger>
-                <SelectContent className="bg-card z-50">
+                <SelectContent className="bg-white z-50 rounded-xl border-2">
                   <SelectItem value="All">All Groups</SelectItem>
                   <SelectItem value="Mammals">🐨 Mammals</SelectItem>
                   <SelectItem value="Birds">🦜 Birds</SelectItem>
@@ -340,30 +365,29 @@ const Index = () => {
                   setSelectedState(null);
                   setSelectedGroup('All');
                 }}
-                variant="outline"
+                className="bg-secondary hover:bg-secondary/90 text-white rounded-xl shadow-sm hover:shadow-md transition-all"
                 size="sm"
-                className="whitespace-nowrap"
               >
-                Reset All Filters ✕
+                Reset Filters ✕
               </Button>
             )}
           </div>
           
           {/* State Selector */}
-          <div className="border-t pt-6">
-            <h4 className="text-base font-bold text-foreground mb-4 flex items-center gap-2">
-              <MapPin className="h-5 w-5 text-primary" />
-              Select State or Territory:
+          <div className="border-t-2 border-border/30 pt-8">
+            <h4 className="text-base font-semibold text-foreground mb-5 flex items-center gap-2">
+              <Compass className="h-5 w-5 text-primary" />
+              State or Territory:
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
               {['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT'].map((state) => (
                 <button
                   key={state}
                   onClick={() => setSelectedState(state === selectedState ? null : state)}
-                  className={`px-4 py-3 rounded-lg font-semibold transition-all shadow-sm hover:shadow-md ${
+                  className={`state-button ${
                     selectedState === state
-                      ? 'bg-primary text-primary-foreground scale-105'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/70'
+                      ? 'state-button-active'
+                      : 'state-button-inactive'
                   }`}
                   aria-label={`Filter by ${state}`}
                 >
@@ -376,7 +400,7 @@ const Index = () => {
       </section>
 
       {/* CHAPTER 1: DISCOVER */}
-      <section id="chapter-discover" className="container mx-auto px-6 lg:px-8 py-16 max-w-7xl">
+      <section id="chapter-discover" className="container mx-auto section-container max-w-7xl gradient-section">
         <ChapterHeader
           chapterNumber={1}
           icon={Compass}
@@ -507,11 +531,13 @@ const Index = () => {
           highlight="Your state matters! Each region faces different threats, from urban sprawl to climate shifts."
         />
         
-        <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-primary/20 hover:shadow-2xl transition-all animate-scale-in">
+        <div className="chart-container animate-scale-in">
           <VegaLiteChart spec={mapSpec} onStateClick={handleMapClick} />
-          <p className="text-sm text-center mt-4 text-muted-foreground">
-            💡 <strong>Try this:</strong> Click different states to see how species distribution changes!
+          <div className="mt-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
+            <p className="text-sm text-center text-foreground font-medium">
+              💡 <strong>Interactive:</strong> Click different states to explore regional data!
           </p>
+          </div>
         </div>
 
         {/* Did You Know Cards */}
@@ -536,7 +562,7 @@ const Index = () => {
       </section>
 
       {/* CHAPTER 2: UNDERSTAND */}
-      <section id="chapter-understand" className="container mx-auto px-6 lg:px-8 py-16 max-w-7xl">
+      <section id="chapter-understand" className="container mx-auto section-container max-w-7xl">
         <ChapterHeader
           chapterNumber={2}
           icon={Target}
@@ -553,15 +579,16 @@ const Index = () => {
         />
 
         {/* Biodiversity Clock & Species Pulse */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-          <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-secondary/20 hover:shadow-2xl transition-all">
-            <h3 className="text-xl font-display font-bold text-foreground mb-4 text-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <div className="chart-container">
+            <h3 className="heading-card mb-6 text-center flex items-center justify-center gap-2">
+              <span className="text-2xl">🕐</span>
               The Biodiversity Clock
             </h3>
             <BiodiversityClock />
           </div>
           
-          <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-secondary/20 hover:shadow-2xl transition-all">
+          <div className="chart-container">
             <VegaLiteChart spec={{
               $schema: 'https://vega.github.io/schema/vega-lite/v6.4.1.json',
               width: 'container',
@@ -613,26 +640,26 @@ const Index = () => {
                 background: 'transparent'
               }
             }} />
-            <p className="text-sm text-center mt-4 text-muted-foreground">
+            <p className="text-sm text-center mt-6 text-muted-foreground font-medium">
               📈 The upward trend shows the growing number of species facing extinction threats
             </p>
           </div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Stacked Bar Chart */}
-          <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-secondary/20 hover:shadow-2xl transition-all animate-fade-in">
+          <div className="chart-container animate-fade-in">
             <StackedBarChart selectedGroup={selectedGroup} selectedStateName={selectedStateFull} />
-            <p className="text-sm text-center mt-4 text-muted-foreground">
+            <p className="text-sm text-center mt-6 text-muted-foreground font-medium">
               📈 Proportional breakdown by threat severity
             </p>
           </div>
 
           {/* Original Bar Chart */}
-          <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-secondary/20 hover:shadow-2xl transition-all animate-fade-in">
+          <div className="chart-container animate-fade-in">
             <VegaLiteChart spec={barSpec} />
-            <p className="text-sm text-center mt-4 text-muted-foreground">
-              🔍 {selectedState ? `Zoomed into ${stateNameMap[selectedState]}` : 'National overview—select a state to filter'}
+            <p className="text-sm text-center mt-6 text-muted-foreground font-medium">
+              🔍 {selectedState ? `Zoomed into ${stateNameMap[selectedState]}` : 'National overview, select a state to filter'}
             </p>
           </div>
         </div>
@@ -648,7 +675,7 @@ const Index = () => {
       </section>
 
       {/* Animal Groups Deep Dive */}
-      <section className="container mx-auto px-6 lg:px-8 py-12 max-w-7xl">
+      <section className="container mx-auto section-container max-w-7xl gradient-section">
         <SectionNarrative
           icon={Layers}
           title="Who's Most at Risk?"
@@ -656,20 +683,20 @@ const Index = () => {
           highlight="Use the dropdown filter to explore each animal group and find which protects the most mammals!"
         />
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Grouped Bar Chart */}
-          <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-accent/20 hover:shadow-2xl transition-all animate-fade-in">
+          <div className="chart-container animate-fade-in">
             <GroupedBarChart selectedGroup={selectedGroup} selectedStateName={selectedStateFull} />
-            <p className="text-sm text-center mt-4 text-muted-foreground">
+            <p className="text-sm text-center mt-6 text-muted-foreground font-medium">
               🐾 Compare how different animal types are affected
             </p>
           </div>
 
           {/* Treemap/Heatmap */}
-          <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-accent/20 hover:shadow-2xl transition-all animate-fade-in">
+          <div className="chart-container animate-fade-in">
             <TreemapChart selectedGroup={selectedGroup} selectedStateName={selectedStateFull} />
-            <p className="text-sm text-center mt-4 text-muted-foreground">
-              🌡️ Heatmap revealing hidden patterns in species-status combinations
+            <p className="text-sm text-center mt-6 text-muted-foreground font-medium">
+              🌡️ Heatmap revealing hidden patterns in species and status combinations
             </p>
           </div>
         </div>
@@ -778,7 +805,7 @@ const Index = () => {
               color="bg-primary/10 text-primary border-primary/20"
             />
           </div>
-        </section>
+      </section>
       )}
 
 
