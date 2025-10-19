@@ -81,14 +81,26 @@ export const SpeciesDetailPanel = ({ selectedState, selectedGroup }: SpeciesDeta
       setLoading(true);
       try {
         const baseUrl = import.meta.env.BASE_URL || '/';
-        const response = await fetch(`${baseUrl}threatened_species not clean.csv`);
+        const csvPath = `${baseUrl}threatened_species not clean.csv`.replace(/ /g, '%20');
+        console.log('[SpeciesDetail] Fetching from:', csvPath);
+        const response = await fetch(csvPath);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const text = await response.text();
+        console.log('[SpeciesDetail] CSV loaded, length:', text.length);
         const rows = text.split('\n').slice(1); // Skip header
+        console.log('[SpeciesDetail] Total rows:', rows.length)
         
         const stateCol = getStateColumn(selectedState);
         const filtered: SpeciesDetail[] = [];
         
-        console.log(`[SpeciesDetail] Loading: ${selectedState} (col ${stateCol}), ${selectedGroup}`);
+        console.log(`[SpeciesDetail] Filtering: ${selectedState} (col ${stateCol}), ${selectedGroup}`);
+        
+        let matchCount = 0;
+        let firstMatch = null;
         
         for (const row of rows) {
           if (!row.trim()) continue;
@@ -98,26 +110,28 @@ export const SpeciesDetailPanel = ({ selectedState, selectedGroup }: SpeciesDeta
           const className = cols[24]?.trim(); // Class column (corrected from 23)
           const matchesGroup = matchesAnimalGroup(className, selectedGroup);
           
-          if (hasState && matchesGroup && filtered.length < 15) {
-            filtered.push({
-              scientificName: cols[0] || 'Unknown',
-              commonName: cols[1] || 'No common name',
-              status: cols[3] || 'Not Listed',
-              family: cols[28] || 'Unknown', // Family column (corrected from 27)
-              class: className || 'Unknown',
-            });
+          if (hasState && matchesGroup) {
+            matchCount++;
+            if (!firstMatch && matchCount <= 3) {
+              console.log(`[SpeciesDetail] Match ${matchCount}:`, {
+                name: cols[1],
+                state: cols[stateCol],
+                class: className,
+              });
+            }
+            if (filtered.length < 15) {
+              filtered.push({
+                scientificName: cols[0] || 'Unknown',
+                commonName: cols[1] || 'No common name',
+                status: cols[3] || 'Not Listed',
+                family: cols[28] || 'Unknown', // Family column (corrected from 27)
+                class: className || 'Unknown',
+              });
+            }
           }
         }
         
-        console.log(`[SpeciesDetail] Found ${filtered.length} species`);
-        if (filtered.length === 0 && rows.length > 0) {
-          // Debug: show first few rows
-          const sample = rows.slice(0, 3).map(row => {
-            const cols = parseCSVLine(row);
-            return { state: cols[stateCol], class: cols[24]?.trim() };
-          });
-          console.log('[SpeciesDetail] Sample rows:', sample);
-        }
+        console.log(`[SpeciesDetail] Total matches: ${matchCount}, displaying: ${filtered.length}`)
         
         setSpecies(filtered);
       } catch (error) {
