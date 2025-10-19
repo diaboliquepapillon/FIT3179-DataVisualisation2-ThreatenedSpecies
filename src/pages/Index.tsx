@@ -348,6 +348,7 @@ const Index = () => {
               <Select value={selectedGroup} onValueChange={setSelectedGroup}>
                 <SelectTrigger className="w-full sm:w-64 bg-white shadow-sm border-2 border-border hover:border-primary/50 transition-colors rounded-xl" aria-label="Select species group">
                   <SelectValue placeholder="Select species group" />
+                </SelectTrigger>
                 <SelectContent className="bg-white z-50 rounded-xl border-2">
                   <SelectItem value="All">All Groups</SelectItem>
                   <SelectItem value="Mammals">🐨 Mammals</SelectItem>
