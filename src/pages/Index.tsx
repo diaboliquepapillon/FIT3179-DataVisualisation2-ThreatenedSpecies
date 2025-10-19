@@ -24,7 +24,6 @@ import { WhatIfSimulator } from '@/components/WhatIfSimulator';
 import { LocalActionHub } from '@/components/LocalActionHub';
 import { AchievementTracker } from '@/components/AchievementTracker';
 import { SpeciesDetailPanel } from '@/components/SpeciesDetailPanel';
-import { ScrollNavigation } from '@/components/ScrollNavigation';
 
 // Hooks
 import { useAchievements } from '@/hooks/useAchievements';
@@ -273,17 +272,6 @@ const Index = () => {
     },
   };
 
-  const scrollToFilters = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    // Focus on the species group filter
-    setTimeout(() => {
-      const filterElement = document.querySelector('[aria-label="Filter by species group"]');
-      if (filterElement instanceof HTMLElement) {
-        filterElement.focus();
-      }
-    }, 500);
-  };
-
   return (
     <div className="min-h-screen bg-background scroll-smooth">
       {/* Animated Intro */}
@@ -291,9 +279,6 @@ const Index = () => {
       
       {/* Animal of the Day - Floating Card */}
       {introComplete && <AnimalOfTheDay />}
-      
-      {/* Scroll Navigation */}
-      {introComplete && <ScrollNavigation onFilterClick={scrollToFilters} />}
       
       <Navigation 
         achievementsUnlocked={unlockedCount}
