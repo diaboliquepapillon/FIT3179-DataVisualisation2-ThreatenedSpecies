@@ -156,8 +156,8 @@ const Index = () => {
       },
       stroke: {
         condition: [
-          { test: 'datum.is_selected', value: '#059669' },
-          { param: 'hover', value: '#f97316' }
+          { test: 'datum.is_selected', value: '#568567' },
+          { param: 'hover', value: '#eb7963' }
         ],
         value: 'white'
       },
