@@ -7,9 +7,25 @@ html {
   font-size: 16px; /* Keep standard size for stability */
 }
 
+/* Mobile-first font scaling */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 /* Increase max width for better space usage */
 .container {
   max-width: 1400px !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
@@ -357,24 +373,24 @@ All colors MUST be HSL.
 
 /* Enhanced Section Spacing */
 .section-container {
-  @apply py-16 px-6 lg:px-8;
+  @apply py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8;
 }
 
 .section-tight {
-  @apply py-8 px-6 lg:px-8;
+  @apply py-6 sm:py-8 px-4 sm:px-6 lg:px-8;
 }
 
 /* Typography Enhancements */
 .heading-display {
-  @apply text-4xl lg:text-5xl font-bold tracking-tight text-foreground;
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground;
 }
 
 .heading-section {
-  @apply text-2xl lg:text-3xl font-bold text-foreground mb-4;
+  @apply text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-4;
 }
 
 .heading-card {
-  @apply text-xl font-semibold text-foreground;
+  @apply text-lg sm:text-xl font-semibold text-foreground;
 }
 
 .text-body {
@@ -401,17 +417,24 @@ All colors MUST be HSL.
 
 /* Chart Container */
 .chart-container {
-  @apply bg-white rounded-2xl p-6 lg:p-8 shadow-md border border-border/50 hover:shadow-xl transition-all duration-300;
+  @apply bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md border border-border/50 hover:shadow-xl transition-all duration-300;
+}
+
+/* Mobile: reduce hover effects */
+@media (max-width: 768px) {
+  .chart-container:hover {
+    @apply shadow-md;
+  }
 }
 
 /* Filter Section */
 .filter-section {
-  @apply bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-2xl p-8 shadow-lg border-2 border-primary/20;
+  @apply bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg border-2 border-primary/20;
 }
 
 /* State Button */
 .state-button {
-  @apply px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 border-2;
+  @apply px-3 py-2 sm:px-4 sm:py-3 rounded-xl font-medium text-xs sm:text-sm transition-all duration-200 border-2;
 }
 
 .state-button-active {
@@ -424,7 +447,7 @@ All colors MUST be HSL.
 
 /* Badge Modern */
 .badge-modern {
-  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  @apply inline-flex items-center px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs font-semibold;
 }
 
 .badge-primary {

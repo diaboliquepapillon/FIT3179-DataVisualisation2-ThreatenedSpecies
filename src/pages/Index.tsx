@@ -285,36 +285,36 @@ const Index = () => {
 
       {/* Hero Section */}
       <header className="relative overflow-hidden gradient-hero">
-        <div className="container relative mx-auto px-6 lg:px-8 py-20 lg:py-28 max-w-7xl">
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 max-w-7xl">
           <div className="text-center animate-fade-in">
-            <div className="mb-6">
-              <span className="badge-modern badge-primary px-5 py-2.5">
+            <div className="mb-4 sm:mb-6">
+              <span className="badge-modern badge-primary px-3 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm">
                 🎓 FIT3179 Data Visualisation Project
               </span>
             </div>
-            <h1 className="heading-display mb-8">
+            <h1 className="heading-display mb-6 sm:mb-8 px-2">
               Where Do Australia's Threatened Animals Live?
             </h1>
-            <div className="flex justify-center gap-4 mb-8 text-4xl lg:text-5xl animate-pulse-slow">
+            <div className="flex justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 text-3xl sm:text-4xl lg:text-5xl animate-pulse-slow">
               <span>🐨</span>
               <span>🦜</span>
               <span>🐍</span>
               <span>🐠</span>
             </div>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-10">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-10 px-4">
               Australia is home to wildlife found nowhere else on Earth, but many species are fighting for survival. 
               Join us on an interactive journey through threatened species data to discover 
               <strong className="text-primary font-semibold"> what's happening in your state</strong> and 
               <strong className="text-primary font-semibold"> what you can do about it</strong>.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <div className="badge-modern badge-primary">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-4">
+              <div className="badge-modern badge-primary text-xs sm:text-sm">
                 📊 Interactive Data Story
-            </div>
-              <div className="badge-modern badge-secondary">
+              </div>
+              <div className="badge-modern badge-secondary text-xs sm:text-sm">
                 🗺️ Explore All States
               </div>
-              <div className="badge-modern bg-accent/10 text-accent border border-accent/20">
+              <div className="badge-modern bg-accent/10 text-accent border border-accent/20 text-xs sm:text-sm">
                 🌏 Real Conservation Data
               </div>
             </div>
@@ -325,30 +325,29 @@ const Index = () => {
       {/* Unified Filter Controls */}
       <section id="visualisation" className="container mx-auto section-tight max-w-7xl">
         <div className="filter-section">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="bg-primary/10 p-3 rounded-xl">
-              <MapPin className="h-6 w-6 text-primary" />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6 sm:mb-8">
+            <div className="bg-primary/10 p-2 sm:p-3 rounded-xl">
+              <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
             </div>
             <div>
-              <h3 className="heading-section mb-0">
+              <h3 className="heading-section mb-1 sm:mb-0">
                 Explore & Filter Visualisations
               </h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Select a species group and state to personalise your exploration
               </p>
             </div>
           </div>
           
           {/* Species Group Filter */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between mb-8">
-            <div className="flex items-center gap-4 flex-wrap">
-              <label htmlFor="group-filter" className="text-base font-semibold text-foreground whitespace-nowrap">
+          <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 flex-wrap w-full">
+              <label htmlFor="group-filter" className="text-sm sm:text-base font-semibold text-foreground">
                 Species Group:
               </label>
               <Select value={selectedGroup} onValueChange={setSelectedGroup}>
-                <SelectTrigger className="w-64 bg-white shadow-sm border-2 border-border hover:border-primary/50 transition-colors rounded-xl" aria-label="Select species group">
+                <SelectTrigger className="w-full sm:w-64 bg-white shadow-sm border-2 border-border hover:border-primary/50 transition-colors rounded-xl" aria-label="Select species group">
                   <SelectValue placeholder="Select species group" />
-                </SelectTrigger>
                 <SelectContent className="bg-white z-50 rounded-xl border-2">
                   <SelectItem value="All">All Groups</SelectItem>
                   <SelectItem value="Mammals">🐨 Mammals</SelectItem>
@@ -359,27 +358,27 @@ const Index = () => {
                 </SelectContent>
               </Select>
             </div>
-            {(selectedState || selectedGroup !== 'All') && (
-              <Button
-                onClick={() => {
-                  setSelectedState(null);
-                  setSelectedGroup('All');
-                }}
-                className="bg-secondary hover:bg-secondary/90 text-white rounded-xl shadow-sm hover:shadow-md transition-all"
-                size="sm"
-              >
-                Reset Filters ✕
-              </Button>
-            )}
+              {(selectedState || selectedGroup !== 'All') && (
+                <Button
+                  onClick={() => {
+                    setSelectedState(null);
+                    setSelectedGroup('All');
+                  }}
+                  className="bg-secondary hover:bg-secondary/90 text-white rounded-xl shadow-sm hover:shadow-md transition-all w-full sm:w-auto mt-2 sm:mt-0"
+                  size="sm"
+                >
+                  Reset Filters ✕
+                </Button>
+              )}
           </div>
           
           {/* State Selector */}
-          <div className="border-t-2 border-border/30 pt-8">
-            <h4 className="text-base font-semibold text-foreground mb-5 flex items-center gap-2">
-              <Compass className="h-5 w-5 text-primary" />
+          <div className="border-t-2 border-border/30 pt-6 sm:pt-8">
+            <h4 className="text-sm sm:text-base font-semibold text-foreground mb-4 sm:mb-5 flex items-center gap-2">
+              <Compass className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               State or Territory:
             </h4>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3">
               {['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT'].map((state) => (
                 <button
                   key={state}
