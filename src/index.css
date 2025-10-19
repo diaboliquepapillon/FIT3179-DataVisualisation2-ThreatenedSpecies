@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Zoom out the entire page slightly for better overview */
+/* Font stability - prevent flash of unstyled text */
 html {
-  font-size: 15px; /* Default is 16px, this reduces everything by ~6% */
+  font-size: 16px; /* Keep standard size for stability */
 }
 
 /* Increase max width for better space usage */

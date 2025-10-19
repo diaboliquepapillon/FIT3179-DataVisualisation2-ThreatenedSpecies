@@ -94,7 +94,7 @@ export const ThreatFlowChartSimple = () => {
                       <div className="flex justify-between text-sm">
                         <span className="text-foreground">{flow.target}</span>
                         <span className="font-semibold text-primary">
-                          {flow.value} species ({flow.percentage}%)
+                          {flow.percentage}% impact
                         </span>
                       </div>
                       <div className="w-full bg-muted rounded-full h-2">
