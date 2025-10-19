@@ -414,6 +414,14 @@ const Index = () => {
             state="New South Wales"
             fact="NSW has lost over 75% of its original vegetation, making it the most cleared state—directly impacting 747 threatened species."
           />
+          <DidYouKnow 
+            state="Western Australia"
+            fact="WA's southwest corner is one of only 35 global biodiversity hotspots, with 80% of plant species found nowhere else!"
+          />
+          <DidYouKnow 
+            state="Tasmania"
+            fact="The Tasmanian Devil is the world's largest surviving carnivorous marsupial, but its population has declined by 80% since 1996."
+          />
         </div>
       </section>
 
@@ -469,9 +477,12 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
           <DidYouKnow 
             fact="Critically Endangered species like the Orange-bellied Parrot have fewer than 50 individuals left in the wild—every single bird counts!"
+          />
+          <DidYouKnow 
+            fact="Climate change is accelerating—species that evolved over millions of years now have just decades to adapt or relocate."
           />
         </div>
       </section>
@@ -503,12 +514,15 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
           <DidYouKnow 
             fact="Australia has more threatened mammal species than any other developed nation—a legacy of introduced predators like foxes and cats."
           />
           <DidYouKnow 
             fact="Reptiles often go unnoticed, but NSW alone has 87 threatened reptile species, including unique skinks and geckos."
+          />
+          <DidYouKnow 
+            fact="Birds act as 'ecosystem engineers'—losing them disrupts seed dispersal, pollination, and pest control."
           />
         </div>
 
@@ -697,7 +711,7 @@ const Index = () => {
                     <strong className="text-primary">Tasmania's island ecosystems are uniquely vulnerable.</strong> 229 threatened species face compounding pressures: climate change warming habitats faster than species can adapt, invasive species disrupting food webs, and diseases like Devil facial tumour threatening iconic animals.
                   </p>
                   <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Support Tasmanian Devil recovery programs, participate in citizen science monitoring invasive species, or donate to island conservation initiatives.
+                    💚 <em>What you can do:</em> Support Tasmanian Devil recovery programs, participate in citizen science to monitor invasive species, or donate to island conservation initiatives.
                   </p>
                 </>
               )}

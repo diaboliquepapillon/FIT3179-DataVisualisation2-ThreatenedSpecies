@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === 'development' && componentTagger(),
   ].filter(Boolean),
-  base: '/threatened-aus-map/',
+  base: '/FIT3179-DataVisualisation2-ThreatenedSpecies/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

@@ -12,7 +12,6 @@ export const VegaLiteChart = ({ spec, className = "", onStateClick }: VegaLiteCh
 
   useEffect(() => {
     if (containerRef.current) {
-      console.log('Embedding chart with spec:', spec);
       vegaEmbed(containerRef.current, spec, {
         actions: {
           export: true,
@@ -22,7 +21,6 @@ export const VegaLiteChart = ({ spec, className = "", onStateClick }: VegaLiteCh
         },
         renderer: 'svg',
       }).then((result) => {
-        console.log('Chart embedded successfully:', result);
         if (onStateClick && result.view) {
           // Listen for clicks on the visualization
           result.view.addEventListener('click', (event: any, item: any) => {
@@ -39,7 +37,6 @@ export const VegaLiteChart = ({ spec, className = "", onStateClick }: VegaLiteCh
         }
       }).catch(error => {
         console.error('Error embedding visualization:', error);
-        console.error('Full error details:', error);
       });
     }
   }, [spec, onStateClick]);
