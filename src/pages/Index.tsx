@@ -12,7 +12,7 @@ import { DidYouKnow } from '@/components/DidYouKnow';
 import { CallToAction } from '@/components/CallToAction';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { MapPin, TrendingDown, AlertTriangle, ShieldAlert, Waves, Map, BarChart3, Layers, Compass, Target, Rocket } from 'lucide-react';
+import { MapPin, TrendingDown, AlertTriangle, ShieldAlert, Waves, Map, BarChart3, Layers, Compass, Target, Rocket, Filter } from 'lucide-react';
 
 // New enhanced components
 import { AnimatedIntro } from '@/components/AnimatedIntro';
@@ -284,6 +284,91 @@ const Index = () => {
         achievementsUnlocked={unlockedCount}
         totalAchievements={totalCount}
       />
+
+      {/* Sticky Filter Bar */}
+      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-2 border-primary/20 shadow-md">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 max-w-7xl">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="bg-primary/10 p-2 rounded-lg">
+                <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-bold text-foreground">Filter Data</h3>
+                <p className="text-xs text-muted-foreground hidden sm:block">Customise your exploration</p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              {/* Species Group Filter */}
+              <Select value={selectedGroup} onValueChange={setSelectedGroup}>
+                <SelectTrigger className="w-full sm:w-44 bg-white shadow-sm border-2 border-border hover:border-primary/50 transition-colors rounded-lg h-9 text-sm" aria-label="Filter by species group">
+                  <SelectValue placeholder="All Groups" />
+                </SelectTrigger>
+                <SelectContent className="bg-white z-50 rounded-lg border-2">
+                  <SelectItem value="All">All Groups</SelectItem>
+                  <SelectItem value="Mammals">🐨 Mammals</SelectItem>
+                  <SelectItem value="Birds">🦜 Birds</SelectItem>
+                  <SelectItem value="Reptiles">🐍 Reptiles</SelectItem>
+                  <SelectItem value="Amphibians">🐸 Amphibians</SelectItem>
+                  <SelectItem value="Fish">🐠 Fish</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              {/* State Pills */}
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT'].map((state) => (
+                  <button
+                    key={state}
+                    onClick={() => setSelectedState(state === selectedState ? null : state)}
+                    className={`px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                      selectedState === state
+                        ? 'bg-primary text-white shadow-md scale-105'
+                        : 'bg-white border-2 border-border hover:border-primary/50 text-foreground hover:scale-105'
+                    }`}
+                    aria-label={`Filter by ${state}`}
+                  >
+                    {state}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Reset Button */}
+              {(selectedState || selectedGroup !== 'All') && (
+                <Button
+                  onClick={() => {
+                    setSelectedState(null);
+                    setSelectedGroup('All');
+                  }}
+                  className="bg-secondary hover:bg-secondary/90 text-white rounded-lg shadow-sm hover:shadow-md transition-all h-9 px-3 text-xs"
+                  size="sm"
+                >
+                  Reset ✕
+                </Button>
+              )}
+            </div>
+          </div>
+          
+          {/* Active Filters Display */}
+          {(selectedState || selectedGroup !== 'All') && (
+            <div className="mt-2 pt-2 border-t border-border/50">
+              <div className="flex items-center gap-2 text-xs">
+                <span className="text-muted-foreground font-medium">Active filters:</span>
+                {selectedGroup !== 'All' && (
+                  <span className="px-2 py-1 bg-primary/10 text-primary rounded-md font-semibold">
+                    {selectedGroup}
+                  </span>
+                )}
+                {selectedState && (
+                  <span className="px-2 py-1 bg-secondary/10 text-secondary rounded-md font-semibold">
+                    {stateNameMap[selectedState]}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Hero Section */}
       <header className="relative overflow-hidden gradient-hero">
