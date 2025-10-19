@@ -81,8 +81,8 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
         transition={{ delay: 1 }}
         className="hidden lg:block fixed left-6 top-1/2 -translate-y-1/2 z-40"
       >
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl border-2 border-primary/20 shadow-xl p-3">
-          <div className="space-y-2">
+        <div className="bg-white/98 backdrop-blur-lg rounded-2xl border-2 border-primary/20 shadow-2xl p-2 min-w-[180px]">
+          <div className="space-y-1">
             {sections.map((section) => {
               const Icon = section.icon;
               const isActive = activeSection === section.id;
@@ -90,22 +90,24 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
-                  className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                  className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 w-full ${
                     isActive
-                      ? 'bg-primary text-white shadow-md scale-105'
-                      : 'hover:bg-primary/10 text-muted-foreground hover:text-primary hover:scale-105'
+                      ? 'bg-gradient-to-r from-primary to-primary/90 text-white shadow-lg scale-105'
+                      : 'hover:bg-primary/5 text-muted-foreground hover:text-primary hover:scale-102'
                   }`}
                   aria-label={`Navigate to ${section.label}`}
                 >
-                  <Icon className={`h-5 w-5 transition-transform ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
-                  <span className={`text-sm font-semibold whitespace-nowrap ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity`}>
+                  <div className={`p-1.5 rounded-lg ${isActive ? 'bg-white/20' : 'bg-primary/10 group-hover:bg-primary/20'} transition-all`}>
+                    <Icon className={`h-4 w-4 transition-transform ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
+                  </div>
+                  <span className={`text-sm font-semibold whitespace-nowrap transition-all`}>
                     {section.label}
                   </span>
                   {isActive && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute left-0 w-1 h-8 bg-white rounded-r"
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                      className="absolute -left-2 w-1 h-10 bg-primary rounded-r-full shadow-lg"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
                 </button>
@@ -113,17 +115,19 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
             })}
             
             {/* Filter Quick Access */}
-            <div className="border-t-2 border-border/30 my-2 pt-2">
+            <div className="border-t-2 border-border/30 mt-3 pt-2">
               <button
                 onClick={() => {
                   scrollToTop();
                   onFilterClick?.();
                 }}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-secondary/10 text-muted-foreground hover:text-secondary hover:scale-105 transition-all duration-300 w-full"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-secondary/10 hover:to-secondary/5 text-muted-foreground hover:text-secondary hover:scale-102 transition-all duration-300 w-full"
                 aria-label="Jump to filters"
               >
-                <FilterIcon className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="p-1.5 rounded-lg bg-secondary/10 group-hover:bg-secondary/20 transition-all">
+                  <FilterIcon className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                </div>
+                <span className="text-sm font-semibold whitespace-nowrap">
                   Filters
                 </span>
               </button>
@@ -136,20 +140,20 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
       <AnimatePresence>
         {showBackToTop && (
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
+            initial={{ scale: 0, opacity: 0, y: 100 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0, opacity: 0, y: 100 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className="fixed bottom-8 right-8 z-40"
           >
-            <Button
+            <button
               onClick={scrollToTop}
-              className="h-14 w-14 rounded-full bg-primary hover:bg-primary/90 text-white shadow-2xl hover:shadow-primary/50 transition-all hover:scale-110"
-              size="icon"
+              className="group relative h-14 w-14 rounded-full bg-gradient-to-br from-primary to-primary/80 hover:from-primary hover:to-primary/90 text-white shadow-2xl hover:shadow-primary/30 transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
               aria-label="Scroll to top"
             >
-              <ChevronUp className="h-6 w-6" />
-            </Button>
+              <ChevronUp className="h-6 w-6 group-hover:animate-bounce" />
+              <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -160,9 +164,9 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="bg-white/95 backdrop-blur-md rounded-full border-2 border-primary/20 shadow-xl px-4 py-2"
+          className="bg-white/98 backdrop-blur-lg rounded-full border-2 border-primary/20 shadow-2xl px-3 py-2.5"
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {sections.map((section) => {
               const Icon = section.icon;
               const isActive = activeSection === section.id;
@@ -170,24 +174,31 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
-                  className={`p-2 rounded-full transition-all ${
+                  className={`relative p-2.5 rounded-full transition-all ${
                     isActive
-                      ? 'bg-primary text-white scale-110'
-                      : 'hover:bg-primary/10 text-muted-foreground'
+                      ? 'bg-gradient-to-br from-primary to-primary/80 text-white scale-110 shadow-lg'
+                      : 'hover:bg-primary/10 text-muted-foreground hover:text-primary active:scale-95'
                   }`}
                   aria-label={`Navigate to ${section.label}`}
                 >
                   <Icon className="h-5 w-5" />
+                  {isActive && (
+                    <motion.div
+                      layoutId="mobileActiveIndicator"
+                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
                 </button>
               );
             })}
-            <div className="w-px h-6 bg-border mx-1" />
+            <div className="w-px h-6 bg-border/50 mx-1" />
             <button
               onClick={() => {
                 scrollToTop();
                 onFilterClick?.();
               }}
-              className="p-2 rounded-full hover:bg-secondary/10 text-muted-foreground hover:text-secondary transition-all"
+              className="p-2.5 rounded-full hover:bg-secondary/10 text-muted-foreground hover:text-secondary active:scale-95 transition-all"
               aria-label="Jump to filters"
             >
               <FilterIcon className="h-5 w-5" />
@@ -195,7 +206,7 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
             {showBackToTop && (
               <button
                 onClick={scrollToTop}
-                className="p-2 rounded-full bg-primary/10 text-primary transition-all"
+                className="p-2.5 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 text-primary hover:from-primary/20 hover:to-primary/10 active:scale-95 transition-all"
                 aria-label="Scroll to top"
               >
                 <ChevronUp className="h-5 w-5" />
