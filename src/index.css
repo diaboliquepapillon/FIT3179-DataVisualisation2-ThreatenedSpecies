@@ -18,50 +18,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Modern professional color scheme */
-    --background: 210 20% 98%;       /* #f7f9fc - clean white-blue */
-    --foreground: 222 47% 11%;       /* #0f172a - slate 900 */
-    --card: 0 0% 100%;               /* pure white */
-    --card-foreground: 222 47% 11%;
+    /* Natural eco-inspired palette */
+    --background: 40 30% 95%;        /* #f5f2eb - warm beige */
+    --foreground: 25 40% 20%;        /* #4a3422 - deep brown */
+    --card: 0 0% 100%;               /* white */
+    --card-foreground: 25 40% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 25 40% 20%;
     
-    /* Primary - modern teal/green */
-    --primary: 173 58% 39%;          /* #2b9d88 - professional teal */
-    --primary-foreground: 0 0% 100%;
+    /* Primary - sage green */
+    --primary: 140 25% 45%;          /* #568567 - sage green */
+    --primary-foreground: 0 0% 98%;
     
-    /* Secondary - vibrant orange */
-    --secondary: 27 96% 61%;         /* #f97316 - modern orange */
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - coral red */
+    --secondary: 15 75% 60%;         /* #eb7963 - warm coral */
+    --secondary-foreground: 0 0% 98%;
     
-    /* Accent - purple */
-    --accent: 262 83% 58%;           /* #8b5cf6 - violet */
-    --accent-foreground: 0 0% 100%;
+    /* Accent - sand beige */
+    --accent: 35 35% 70%;            /* #c5b79a - sand beige */
+    --accent-foreground: 25 40% 20%;
     
     /* Muted */
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 38 20% 90%;
+    --muted-foreground: 30 10% 40%;
     
     /* Border */
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 173 58% 39%;
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 100 15% 32%;
     
     /* Destructive */
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
     
     --radius: 0.75rem;
 
-    /* Data visualization - modern vibrant palette */
-    --viz-teal: 173 58% 39%;         /* primary teal */
-    --viz-orange: 27 96% 61%;        /* vibrant orange */
-    --viz-purple: 262 83% 58%;       /* violet */
-    --viz-blue: 217 91% 60%;         /* bright blue */
-    --viz-green: 142 71% 45%;        /* emerald */
-    --viz-pink: 326 78% 66%;         /* pink */
-    --viz-amber: 38 92% 50%;         /* amber */
-    --viz-indigo: 239 84% 67%;       /* indigo */
+    /* Data visualization - eco palette */
+    --viz-sage: 140 25% 45%;         /* sage green */
+    --viz-coral: 15 75% 60%;         /* coral red */
+    --viz-sand: 35 35% 70%;          /* sand beige */
+    --viz-terracotta: 15 55% 50%;    /* terracotta */
+    --viz-eucalyptus: 155 30% 55%;   /* eucalyptus */
+    --viz-ochre: 35 60% 50%;         /* ochre */
+    --viz-ocean: 200 60% 50%;        /* ocean blue */
+    --viz-clay: 25 45% 40%;          /* clay brown */
   }
 }
 
@@ -437,11 +437,11 @@ All colors MUST be HSL.
 
 /* Gradient Backgrounds */
 .gradient-hero {
-  background: linear-gradient(135deg, hsl(173 58% 39% / 0.03) 0%, hsl(27 96% 61% / 0.03) 100%);
+  background: linear-gradient(135deg, hsl(140 25% 45% / 0.05) 0%, hsl(35 35% 70% / 0.05) 100%);
 }
 
 .gradient-section {
-  background: linear-gradient(180deg, transparent 0%, hsl(173 58% 39% / 0.02) 50%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, hsl(140 25% 45% / 0.02) 50%, transparent 100%);
 }
 
 @layer base {
