@@ -88,12 +88,14 @@ export const SpeciesDetailPanel = ({ selectedState, selectedGroup }: SpeciesDeta
         const stateCol = getStateColumn(selectedState);
         const filtered: SpeciesDetail[] = [];
         
+        console.log(`[SpeciesDetail] Loading: ${selectedState} (col ${stateCol}), ${selectedGroup}`);
+        
         for (const row of rows) {
           if (!row.trim()) continue;
           
           const cols = parseCSVLine(row);
-          const hasState = cols[stateCol] === 'Yes' || cols[stateCol] === '-';
-          const className = cols[24]; // Class column (corrected from 23)
+          const hasState = cols[stateCol] === 'Yes';
+          const className = cols[24]?.trim(); // Class column (corrected from 23)
           const matchesGroup = matchesAnimalGroup(className, selectedGroup);
           
           if (hasState && matchesGroup && filtered.length < 15) {
@@ -105,6 +107,16 @@ export const SpeciesDetailPanel = ({ selectedState, selectedGroup }: SpeciesDeta
               class: className || 'Unknown',
             });
           }
+        }
+        
+        console.log(`[SpeciesDetail] Found ${filtered.length} species`);
+        if (filtered.length === 0 && rows.length > 0) {
+          // Debug: show first few rows
+          const sample = rows.slice(0, 3).map(row => {
+            const cols = parseCSVLine(row);
+            return { state: cols[stateCol], class: cols[24]?.trim() };
+          });
+          console.log('[SpeciesDetail] Sample rows:', sample);
         }
         
         setSpecies(filtered);
