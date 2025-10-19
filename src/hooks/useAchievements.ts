@@ -62,6 +62,26 @@ export const useAchievements = () => {
 
   useEffect(() => {
     localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(achievements));
+    
+    // Check if all non-master achievements are unlocked and auto-unlock master
+    const otherAchievements = achievements.filter((a) => a.id !== 'master_conservationist');
+    const masterAchievement = achievements.find((a) => a.id === 'master_conservationist');
+    const allOthersUnlocked = otherAchievements.every((a) => a.unlocked);
+    
+    if (allOthersUnlocked && masterAchievement && !masterAchievement.unlocked) {
+      setAchievements((current) =>
+        current.map((a) =>
+          a.id === 'master_conservationist'
+            ? { ...a, unlocked: true, unlockedAt: new Date() }
+            : a
+        )
+      );
+      toast.success('🎉 Achievement Unlocked: Master Conservationist!', {
+        description: 'You\'ve unlocked all achievements!',
+        icon: '🏆',
+        duration: 6000,
+      });
+    }
   }, [achievements]);
 
   const unlockAchievement = useCallback((achievementId: string) => {
