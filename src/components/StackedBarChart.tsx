@@ -23,6 +23,7 @@ export const StackedBarChart = ({ selectedGroup, selectedStateName }: StackedBar
       url: `${baseUrl}threatened_species.csv`,
     },
     transform: [
+      { filter: "datum.group !== 'Other' && datum.group !== 'Invertebrates'" },
       ...(selectedGroup !== 'All' ? [{ filter: `datum.group == '${selectedGroup}'` }] : []),
       ...(selectedStateName ? [{ filter: `datum.state == '${selectedStateName}'` }] : []),
       {

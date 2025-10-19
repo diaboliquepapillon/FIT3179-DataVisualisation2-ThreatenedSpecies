@@ -25,6 +25,7 @@ export const GroupedBarChart = ({ selectedGroup, selectedStateName }: GroupedBar
       url: `${baseUrl}threatened_species.csv`,
     },
     transform: [
+      { filter: "datum.group !== 'Other' && datum.group !== 'Invertebrates'" },
       ...(selectedGroup !== 'All' ? [{ filter: `datum.group == '${selectedGroup}'` }] : []),
       ...(selectedStateName ? [{ filter: `datum.state == '${selectedStateName}'` }] : []),
       {

@@ -23,6 +23,7 @@ import { ThreatFlowChartSimple } from '@/components/ThreatFlowChartSimple';
 import { WhatIfSimulator } from '@/components/WhatIfSimulator';
 import { LocalActionHub } from '@/components/LocalActionHub';
 import { AchievementTracker } from '@/components/AchievementTracker';
+import { SpeciesDetailPanel } from '@/components/SpeciesDetailPanel';
 
 // Hooks
 import { useAchievements } from '@/hooks/useAchievements';
@@ -212,6 +213,7 @@ const Index = () => {
       url: `${baseUrl}threatened_species.csv`,
     },
     transform: [
+      { filter: "datum.group !== 'Other' && datum.group !== 'Invertebrates'" },
       ...(selectedGroup !== 'All' ? [{ filter: `datum.group == '${selectedGroup}'` }] : []),
       ...(selectedState ? [{ filter: `datum.state == '${stateNameMap[selectedState]}'` }] : []),
       {
@@ -699,6 +701,14 @@ const Index = () => {
               🌡️ Heatmap revealing hidden patterns in species and status combinations
             </p>
           </div>
+        </div>
+
+        {/* Species Detail Panel */}
+        <div className="mt-8 animate-fade-in">
+          <SpeciesDetailPanel 
+            selectedState={selectedState} 
+            selectedGroup={selectedGroup} 
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
