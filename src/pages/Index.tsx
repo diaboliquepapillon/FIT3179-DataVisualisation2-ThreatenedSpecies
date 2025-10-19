@@ -19,7 +19,6 @@ import { AnimatedIntro } from '@/components/AnimatedIntro';
 import { AnimalOfTheDay } from '@/components/AnimalOfTheDay';
 import { WildlifeWindows } from '@/components/WildlifeWindows';
 import { BiodiversityClock } from '@/components/BiodiversityClock';
-import { SpeciesPulse } from '@/components/SpeciesPulse';
 import { ThreatFlowChartSimple } from '@/components/ThreatFlowChartSimple';
 import { WhatIfSimulator } from '@/components/WhatIfSimulator';
 import { LocalActionHub } from '@/components/LocalActionHub';
@@ -161,8 +160,8 @@ const Index = () => {
       },
       stroke: {
         condition: [
-          { test: 'datum.is_selected', value: '#2563eb' },
-          { param: 'hover', value: '#fbbf24' }
+          { test: 'datum.is_selected', value: '#059669' },
+          { param: 'hover', value: '#f97316' }
         ],
         value: 'white'
       },
@@ -317,16 +316,21 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Filter Controls */}
+      {/* Unified Filter Controls */}
       <section id="visualisation" className="container mx-auto px-6 lg:px-8 py-8 max-w-7xl">
-        <div className="bg-card rounded-xl p-6 shadow-lg border border-border">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+        <div className="bg-card rounded-xl p-6 shadow-lg border-2 border-primary/20">
+          <h3 className="text-xl font-display font-bold text-foreground mb-6 flex items-center gap-2">
+            🔍 Explore & Filter Visualizations
+          </h3>
+          
+          {/* Species Group Filter */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between mb-6">
             <div className="flex items-center gap-4 flex-wrap">
-              <label htmlFor="group-filter" className="text-sm font-semibold text-foreground whitespace-nowrap">
+              <label htmlFor="group-filter" className="text-base font-bold text-foreground whitespace-nowrap">
                 Filter by Species Group:
               </label>
               <Select value={selectedGroup} onValueChange={setSelectedGroup}>
-                <SelectTrigger className="w-64 bg-background shadow-sm" aria-label="Select species group">
+                <SelectTrigger className="w-72 bg-background shadow-md border-2 border-primary/30" aria-label="Select species group">
                   <SelectValue placeholder="Select species group" />
                 </SelectTrigger>
                 <SelectContent className="bg-card z-50">
@@ -353,6 +357,30 @@ const Index = () => {
               </Button>
             )}
           </div>
+          
+          {/* State Selector */}
+          <div className="border-t pt-6">
+            <h4 className="text-base font-bold text-foreground mb-4 flex items-center gap-2">
+              <MapPin className="h-5 w-5 text-primary" />
+              Select State or Territory:
+            </h4>
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+              {['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT'].map((state) => (
+                <button
+                  key={state}
+                  onClick={() => setSelectedState(state === selectedState ? null : state)}
+                  className={`px-4 py-3 rounded-lg font-semibold transition-all shadow-sm hover:shadow-md ${
+                    selectedState === state
+                      ? 'bg-primary text-primary-foreground scale-105'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/70'
+                  }`}
+                  aria-label={`Filter by ${state}`}
+                >
+                  {state}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -375,6 +403,97 @@ const Index = () => {
             onAchievementUnlock={unlockAchievement}
           />
         </div>
+
+        {/* State-Specific Facts (shown when state is selected) */}
+        {selectedState && (
+          <div className="mb-12 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 rounded-xl p-8 lg:p-12 border-l-4 border-primary shadow-lg animate-scale-in">
+            <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-4">
+              Your State's Story: {stateNameMap[selectedState]}
+            </h2>
+            <div className="prose prose-lg max-w-none">
+              {selectedState === 'QLD' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">Queensland is Australia's threatened species capital.</strong> With 602 at-risk animals, the state faces a biodiversity crisis driven by land clearing (still the highest rate in Australia), coastal development pressures, and climate warming impacts on the Great Barrier Reef and tropical rainforests.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Support Queensland's Land Restoration Fund, volunteer for reef monitoring programs, or advocate for stronger land-clearing laws.
+                  </p>
+                </>
+              )}
+              {selectedState === 'NSW' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">New South Wales carries the heaviest threatened species burden.</strong> 747 species face threats from Australia's most densely populated state. Over 75% of original vegetation is gone—replaced by cities, farms, and infrastructure fragmenting critical wildlife corridors.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Join local Landcare groups, plant native gardens to create urban wildlife corridors, or support rewilding initiatives like the Great Eastern Ranges.
+                  </p>
+                </>
+              )}
+              {selectedState === 'WA' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">Western Australia is an endemism hotspot—and a conservation flashpoint.</strong> 610 threatened species include animals found nowhere else on Earth. Mining expansion, feral cats and foxes, and changing rainfall threaten unique desert and southwest forest ecosystems.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Support wildlife recovery programs like Western Shield, advocate for feral predator control, or donate to conservation groups protecting critical habitats.
+                  </p>
+                </>
+              )}
+              {selectedState === 'VIC' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">Victoria's agricultural intensity creates early-warning species risks.</strong> With high proportions of 'Vulnerable' species, the state has a critical window for intervention before populations crash. Grasslands and wetlands—once covering vast areas—are now fragmented remnants.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Protect remaining grasslands by supporting conservation trusts, create frog-friendly gardens for amphibians, or volunteer for wetland restoration projects.
+                  </p>
+                </>
+              )}
+              {selectedState === 'TAS' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">Tasmania's island ecosystems are uniquely vulnerable.</strong> 229 threatened species face compounding pressures: climate change warming habitats faster than species can adapt, invasive species disrupting food webs, and diseases like Devil facial tumour threatening iconic animals.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Support Tasmanian Devil recovery programs, participate in citizen science to monitor invasive species, or donate to island conservation initiatives.
+                  </p>
+                </>
+              )}
+              {selectedState === 'SA' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">South Australia's arid-adapted species face escalating climate threats.</strong> 314 species evolved for harsh conditions now face even harsher realities: prolonged droughts, extreme temperatures, and habitat degradation from overgrazing making survival increasingly difficult.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Support arid zone recovery projects, advocate for sustainable pastoral practices, or volunteer for wildlife rescue during extreme weather events.
+                  </p>
+                </>
+              )}
+              {selectedState === 'NT' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">The Northern Territory's remote ecosystems face silent threats.</strong> 151 species struggle with altered fire regimes, feral herbivores destroying habitats, and predatory mammals. Indigenous land management practices offer hope—traditional burning techniques protect biodiversity far better than European methods.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Support Indigenous Protected Areas, advocate for traditional fire management expansion, or donate to NT wildlife recovery programs.
+                  </p>
+                </>
+              )}
+              {selectedState === 'ACT' && (
+                <>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    <strong className="text-primary">The ACT proves small territories face big conservation challenges.</strong> Despite covering just 2,358 km², 69 threatened species persist in habitat remnants squeezed between urban development. Grassland birds and woodland mammals need careful urban planning to survive.
+                  </p>
+                  <p className="text-muted-foreground text-base">
+                    💚 <em>What you can do:</em> Participate in ACT ParkCare activities, create wildlife-friendly gardens in Canberra suburbs, or advocate for green corridors in urban planning.
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Wildlife Windows - Small Multiple Cards */}
         <div className="mb-8">
@@ -452,10 +571,60 @@ const Index = () => {
           </div>
           
           <div className="bg-card rounded-xl p-6 lg:p-8 shadow-lg border-2 border-secondary/20 hover:shadow-2xl transition-all">
-            <h3 className="text-xl font-display font-bold text-foreground mb-4 text-center">
-              Species Pulse Over Time
-            </h3>
-            <SpeciesPulse />
+            <VegaLiteChart spec={{
+              $schema: 'https://vega.github.io/schema/vega-lite/v6.4.1.json',
+              width: 'container',
+              height: 300,
+              title: {
+                text: 'Species Pulse Over Time',
+                fontSize: 18,
+                font: 'Playfair Display',
+                fontWeight: 600,
+                color: '#4a3422'
+              },
+              data: { url: `${baseUrl}timeline_data.json`, format: { property: 'data' } },
+              mark: {
+                type: 'line',
+                point: { filled: true, size: 100 },
+                strokeWidth: 3,
+                color: '#f97316',
+                tooltip: true
+              },
+              encoding: {
+                x: {
+                  field: 'year',
+                  type: 'ordinal',
+                  title: 'Year',
+                  axis: { 
+                    labelAngle: -45,
+                    labelFont: 'Open Sans',
+                    titleFont: 'Open Sans',
+                    titleFontWeight: 600
+                  }
+                },
+                y: {
+                  field: 'totalSpecies',
+                  type: 'quantitative',
+                  title: 'Threatened Species Count',
+                  scale: { zero: false },
+                  axis: { 
+                    labelFont: 'Open Sans',
+                    titleFont: 'Open Sans',
+                    titleFontWeight: 600
+                  }
+                },
+                tooltip: [
+                  { field: 'year', title: 'Year', type: 'ordinal' },
+                  { field: 'totalSpecies', title: 'Total Species', type: 'quantitative', format: ',d' }
+                ]
+              },
+              config: {
+                background: 'transparent'
+              }
+            }} />
+            <p className="text-sm text-center mt-4 text-muted-foreground">
+              📈 The upward trend shows the growing number of species facing extinction threats
+            </p>
           </div>
         </div>
         
@@ -553,40 +722,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* State Selection Guide */}
-      <section className="container mx-auto px-6 lg:px-8 py-6 max-w-7xl">
-        <div className="bg-card rounded-xl p-6 shadow-lg border border-border">
-          <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-            <MapPin className="h-5 w-5 text-primary" />
-            Explore by State or Territory
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-            {['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT'].map((state) => (
-              <button
-                key={state}
-                onClick={() => setSelectedState(state === selectedState ? null : state)}
-                className={`px-4 py-3 rounded-lg font-semibold transition-all shadow-sm hover:shadow-md ${
-                  selectedState === state
-                    ? 'bg-primary text-primary-foreground scale-105'
-                    : 'bg-muted text-muted-foreground hover:bg-muted/70'
-                }`}
-                aria-label={`Filter by ${state}`}
-              >
-                {state}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CHAPTER 3: ACT */}
+      {/* CHAPTER 3: TAKE ACTION */}
       <section id="chapter-act" className="container mx-auto px-6 lg:px-8 py-16 max-w-7xl">
         <ChapterHeader
           chapterNumber={3}
           icon={Rocket}
-          title="Act"
-          subtitle="Data is powerful—but action is what saves species. Here's what students like you can actually do."
-          emoji="🚀"
+          title="Take Action"
+          subtitle="Research shows individual actions drive conservation success. Here's how students can contribute to species protection."
+          emoji="🌱"
         />
 
         {/* Local Action Hub */}
@@ -618,20 +761,18 @@ const Index = () => {
       {/* Call to Action - New Component */}
       <CallToAction />
 
-      {/* Regional Insights */}
-      <section id="insights" className="container mx-auto px-6 lg:px-8 py-12 max-w-7xl">
-        <div className="mb-8 text-center animate-fade-in">
-          <h2 className="text-3xl font-display font-bold text-foreground mb-3">
-            {selectedState ? `Your State's Story: ${stateNameMap[selectedState]}` : 'Why This Matters to You'}
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {selectedState 
-              ? "Here's what's happening in your region—and why you should care."
-              : "These aren't just numbers. Every species plays a role in Australia's ecological tapestry."}
-          </p>
-        </div>
+      {/* Regional Insights - Overview Cards */}
+      {!selectedState && (
+        <section id="insights" className="container mx-auto px-6 lg:px-8 py-12 max-w-7xl">
+          <div className="mb-8 text-center animate-fade-in">
+            <h2 className="text-3xl font-display font-bold text-foreground mb-3">
+              Why This Matters to You
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              These aren't just numbers. Every species plays a role in Australia's ecological tapestry.
+            </p>
+          </div>
 
-        {!selectedState ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in">
             <InsightCard
               icon={<TrendingDown className="h-6 w-6" />}
@@ -662,93 +803,8 @@ const Index = () => {
               color="bg-primary/10 text-primary border-primary/20"
             />
           </div>
-        ) : (
-          <div className="bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 rounded-xl p-8 lg:p-12 border-l-4 border-primary shadow-lg animate-scale-in">
-            <div className="prose prose-lg max-w-none">
-              {selectedState === 'QLD' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Queensland is Australia's threatened species capital.</strong> With 602 at-risk animals, the state faces a biodiversity crisis driven by land clearing (still the highest rate in Australia), coastal development pressures, and climate warming impacts on the Great Barrier Reef and tropical rainforests.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Support Queensland's Land Restoration Fund, volunteer for reef monitoring programs, or advocate for stronger land-clearing laws.
-                  </p>
-                </>
-              )}
-              {selectedState === 'NSW' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">New South Wales carries the heaviest threatened species burden.</strong> 747 species face threats from Australia's most densely populated state. Over 75% of original vegetation is gone—replaced by cities, farms, and infrastructure fragmenting critical wildlife corridors.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Join local Landcare groups, plant native gardens to create urban wildlife corridors, or support rewilding initiatives like the Great Eastern Ranges.
-                  </p>
-                </>
-              )}
-              {selectedState === 'WA' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Western Australia is an endemism hotspot—and a conservation flashpoint.</strong> 610 threatened species include animals found nowhere else on Earth. Mining expansion, feral cats and foxes, and changing rainfall threaten unique desert and southwest forest ecosystems.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Support wildlife recovery programs like Western Shield, advocate for feral predator control, or donate to conservation groups protecting critical habitats.
-                  </p>
-                </>
-              )}
-              {selectedState === 'VIC' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Victoria's agricultural intensity creates early-warning species risks.</strong> With high proportions of 'Vulnerable' species, the state has a critical window for intervention before populations crash. Grasslands and wetlands—once covering vast areas—are now fragmented remnants.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Protect remaining grasslands by supporting conservation trusts, create frog-friendly gardens for amphibians, or volunteer for wetland restoration projects.
-                  </p>
-                </>
-              )}
-              {selectedState === 'TAS' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Tasmania's island ecosystems are uniquely vulnerable.</strong> 229 threatened species face compounding pressures: climate change warming habitats faster than species can adapt, invasive species disrupting food webs, and diseases like Devil facial tumour threatening iconic animals.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Support Tasmanian Devil recovery programs, participate in citizen science to monitor invasive species, or donate to island conservation initiatives.
-                  </p>
-                </>
-              )}
-              {selectedState === 'SA' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">South Australia's arid-adapted species face escalating climate threats.</strong> 314 species evolved for harsh conditions now face even harsher realities: prolonged droughts, extreme temperatures, and habitat degradation from overgrazing making survival increasingly difficult.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Support arid zone recovery projects, advocate for sustainable pastoral practices, or volunteer for wildlife rescue during extreme weather events.
-                  </p>
-                </>
-              )}
-              {selectedState === 'NT' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">The Northern Territory's remote ecosystems face silent threats.</strong> 151 species struggle with altered fire regimes, feral herbivores destroying habitats, and predatory mammals. Indigenous land management practices offer hope—traditional burning techniques protect biodiversity far better than European methods.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Support Indigenous Protected Areas, advocate for traditional fire management expansion, or donate to NT wildlife recovery programs.
-                  </p>
-                </>
-              )}
-              {selectedState === 'ACT' && (
-                <>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">The ACT proves small territories face big conservation challenges.</strong> Despite covering just 2,358 km², 69 threatened species persist in habitat remnants squeezed between urban development. Grassland birds and woodland mammals need careful urban planning to survive.
-                  </p>
-                  <p className="text-muted-foreground text-base">
-                    💚 <em>What you can do:</em> Participate in ACT ParkCare activities, create wildlife-friendly gardens in Canberra suburbs, or advocate for green corridors in urban planning.
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
-        )}
-      </section>
+        </section>
+      )}
 
 
       {/* Achievements Section */}

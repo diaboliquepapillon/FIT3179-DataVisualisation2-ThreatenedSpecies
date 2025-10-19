@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Zoom out the entire page slightly for better overview */
+html {
+  font-size: 15px; /* Default is 16px, this reduces everything by ~6% */
+}
+
+/* Increase max width for better space usage */
+.container {
+  max-width: 1400px !important;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
