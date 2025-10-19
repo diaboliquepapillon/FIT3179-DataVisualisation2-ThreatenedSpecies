@@ -418,12 +418,24 @@ All colors MUST be HSL.
 /* Chart Container */
 .chart-container {
   @apply bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md border border-border/50 hover:shadow-xl transition-all duration-300;
+  min-width: 0; /* Allow flex shrinking */
 }
 
-/* Mobile: reduce hover effects */
+/* Mobile: reduce hover effects and ensure proper sizing */
 @media (max-width: 768px) {
+  .chart-container {
+    @apply p-3;
+  }
+  
   .chart-container:hover {
     @apply shadow-md;
+  }
+  
+  /* Ensure Vega-Lite charts are responsive */
+  .chart-container canvas,
+  .chart-container svg {
+    max-width: 100% !important;
+    height: auto !important;
   }
 }
 

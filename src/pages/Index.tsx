@@ -85,18 +85,18 @@ const Index = () => {
     $schema: 'https://vega.github.io/schema/vega-lite/v6.4.1.json',
     title: {
       text: 'Threatened Species Distribution Across Australia',
-      fontSize: 20,
+      fontSize: 16,
       font: 'Playfair Display',
       fontWeight: 700,
       color: '#4a3422',
       anchor: 'middle',
       subtitle: 'Click any state to explore its unique conservation challenges',
-      subtitleFontSize: 13,
+      subtitleFontSize: 11,
       subtitleFont: 'Open Sans',
       subtitleColor: '#6b5d4f'
     },
     width: 'container',
-    height: 500,
+    height: 400,
     projection: { 
       type: 'mercator',
       center: [133, -28],
@@ -531,12 +531,12 @@ const Index = () => {
           highlight="Your state matters! Each region faces different threats, from urban sprawl to climate shifts."
         />
         
-        <div className="chart-container animate-scale-in">
+        <div className="chart-container animate-scale-in overflow-x-auto">
           <VegaLiteChart spec={mapSpec} onStateClick={handleMapClick} />
-          <div className="mt-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
-            <p className="text-sm text-center text-foreground font-medium">
+          <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-primary/5 rounded-xl border border-primary/20">
+            <p className="text-xs sm:text-sm text-center text-foreground font-medium">
               💡 <strong>Interactive:</strong> Click different states to explore regional data!
-          </p>
+            </p>
           </div>
         </div>
 
