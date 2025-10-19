@@ -1,0 +1,105 @@
+{
+  "species": [
+    {
+      "id": 1,
+      "name": "Koala",
+      "scientificName": "Phascolarctos cinereus",
+      "status": "Endangered",
+      "group": "Mammals",
+      "funFact": "Koalas sleep up to 22 hours a day to conserve energy from their low-nutrient eucalyptus diet. Each koala has a unique nose print, like human fingerprints!",
+      "emoji": "🐨",
+      "state": "QLD"
+    },
+    {
+      "id": 2,
+      "name": "Orange-bellied Parrot",
+      "scientificName": "Neophema chrysogaster",
+      "status": "Critically Endangered",
+      "group": "Birds",
+      "funFact": "With fewer than 50 individuals left in the wild, every single Orange-bellied Parrot counts. They migrate between Tasmania and mainland Australia—one of only two migratory parrots in the world!",
+      "emoji": "🦜",
+      "state": "TAS"
+    },
+    {
+      "id": 3,
+      "name": "Northern Quoll",
+      "scientificName": "Dasyurus hallucatus",
+      "status": "Endangered",
+      "group": "Mammals",
+      "funFact": "These feisty marsupial carnivores can climb trees and swim! Sadly, they're fatally attracted to cane toads, which are poisonous to them.",
+      "emoji": "🦝",
+      "state": "NT"
+    },
+    {
+      "id": 4,
+      "name": "Southern Corroboree Frog",
+      "scientificName": "Pseudophryne corroboree",
+      "status": "Critically Endangered",
+      "group": "Amphibians",
+      "funFact": "One of the world's most striking frogs with bold yellow and black stripes! Their skin produces a toxin that once protected them—but not from the deadly chytrid fungus.",
+      "emoji": "🐸",
+      "state": "NSW"
+    },
+    {
+      "id": 5,
+      "name": "Grey Nurse Shark",
+      "scientificName": "Carcharias taurus",
+      "status": "Critically Endangered",
+      "group": "Fish",
+      "funFact": "Despite their fierce appearance, Grey Nurse Sharks are docile and pose no threat to humans. They're the first shark species in the world to be protected!",
+      "emoji": "🦈",
+      "state": "NSW"
+    },
+    {
+      "id": 6,
+      "name": "Tasmanian Devil",
+      "scientificName": "Sarcophilus harrisii",
+      "status": "Endangered",
+      "group": "Mammals",
+      "funFact": "Tasmania's top carnivore has the strongest bite-force-to-body-size ratio of any mammal! They're battling a contagious facial tumor disease that threatens their survival.",
+      "emoji": "😈",
+      "state": "TAS"
+    },
+    {
+      "id": 7,
+      "name": "Leadbeater's Possum",
+      "scientificName": "Gymnobelideus leadbeateri",
+      "status": "Critically Endangered",
+      "group": "Mammals",
+      "funFact": "Victoria's state emblem lives in old-growth Mountain Ash forests. They nest in tree hollows that take 120+ years to form—logging threatens their last refuges.",
+      "emoji": "🐭",
+      "state": "VIC"
+    },
+    {
+      "id": 8,
+      "name": "Night Parrot",
+      "scientificName": "Pezoporus occidentalis",
+      "status": "Endangered",
+      "group": "Birds",
+      "funFact": "This mysterious nocturnal parrot was thought extinct for nearly 100 years until rediscovered in 2013. So rare, scientists are still learning where they live!",
+      "emoji": "🦉",
+      "state": "QLD"
+    },
+    {
+      "id": 9,
+      "name": "Western Swamp Tortoise",
+      "scientificName": "Pseudemydura umbrina",
+      "status": "Critically Endangered",
+      "group": "Reptiles",
+      "funFact": "One of the world's rarest reptiles, found only in two small swamps near Perth. Climate change and habitat loss threaten their seasonal wetland homes.",
+      "emoji": "🐢",
+      "state": "WA"
+    },
+    {
+      "id": 10,
+      "name": "Gouldian Finch",
+      "scientificName": "Erythrura gouldiae",
+      "status": "Endangered",
+      "group": "Birds",
+      "funFact": "Called the 'Rainbow Bird' for its spectacular colors—purple, yellow, red, green, and blue! Fire regimes and habitat changes have caused drastic population decline.",
+      "emoji": "🌈",
+      "state": "NT"
+    }
+  ]
+}
+

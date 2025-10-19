@@ -1,0 +1,67 @@
+{
+  "years": [2000, 2005, 2010, 2015, 2020, 2025],
+  "data": [
+    {
+      "year": 2000,
+      "totalSpecies": 1203,
+      "mammals": { "ce": 42, "en": 178, "vu": 215 },
+      "birds": { "ce": 28, "en": 125, "vu": 187 },
+      "reptiles": { "ce": 15, "en": 89, "vu": 156 },
+      "amphibians": { "ce": 32, "en": 78, "vu": 98 },
+      "fish": { "ce": 8, "en": 42, "vu": 70 }
+    },
+    {
+      "year": 2005,
+      "totalSpecies": 1354,
+      "mammals": { "ce": 52, "en": 198, "vu": 238 },
+      "birds": { "ce": 32, "en": 142, "vu": 212 },
+      "reptiles": { "ce": 18, "en": 105, "vu": 178 },
+      "amphibians": { "ce": 38, "en": 95, "vu": 125 },
+      "fish": { "ce": 10, "en": 48, "vu": 83 }
+    },
+    {
+      "year": 2010,
+      "totalSpecies": 1562,
+      "mammals": { "ce": 65, "en": 225, "vu": 268 },
+      "birds": { "ce": 38, "en": 165, "vu": 245 },
+      "reptiles": { "ce": 20, "en": 125, "vu": 212 },
+      "amphibians": { "ce": 45, "en": 115, "vu": 142 },
+      "fish": { "ce": 12, "en": 55, "vu": 87 }
+    },
+    {
+      "year": 2015,
+      "totalSpecies": 1789,
+      "mammals": { "ce": 72, "en": 242, "vu": 285 },
+      "birds": { "ce": 42, "en": 172, "vu": 268 },
+      "reptiles": { "ce": 23, "en": 135, "vu": 235 },
+      "amphibians": { "ce": 50, "en": 125, "vu": 155 },
+      "fish": { "ce": 13, "en": 60, "vu": 95 }
+    },
+    {
+      "year": 2020,
+      "totalSpecies": 1956,
+      "mammals": { "ce": 78, "en": 255, "vu": 298 },
+      "birds": { "ce": 44, "en": 180, "vu": 282 },
+      "reptiles": { "ce": 24, "en": 142, "vu": 245 },
+      "amphibians": { "ce": 53, "en": 132, "vu": 162 },
+      "fish": { "ce": 14, "en": 63, "vu": 98 }
+    },
+    {
+      "year": 2025,
+      "totalSpecies": 2130,
+      "mammals": { "ce": 85, "en": 265, "vu": 305 },
+      "birds": { "ce": 45, "en": 185, "vu": 290 },
+      "reptiles": { "ce": 25, "en": 145, "vu": 250 },
+      "amphibians": { "ce": 55, "en": 135, "vu": 165 },
+      "fish": { "ce": 15, "en": 65, "vu": 100 }
+    }
+  ],
+  "keyEvents": [
+    { "year": 2003, "event": "Devastating bushfires impact wildlife corridors" },
+    { "year": 2009, "event": "Black Saturday bushfires - major habitat loss" },
+    { "year": 2016, "event": "Great Barrier Reef mass bleaching event" },
+    { "year": 2019, "event": "Black Summer bushfires - unprecedented wildlife crisis" },
+    { "year": 2022, "event": "Flooding across eastern Australia disrupts ecosystems" }
+  ]
+}
+

@@ -1,0 +1,157 @@
+{
+  "states": {
+    "NSW": {
+      "threatenedSpecies": [
+        { "name": "Koala", "image": "🐨", "count": 89 },
+        { "name": "Southern Corroboree Frog", "image": "🐸", "count": 1 },
+        { "name": "Grey-headed Flying Fox", "image": "🦇", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "Greening Australia", "description": "Revegetation and wildlife corridor restoration across NSW", "focus": "Habitat restoration" },
+        { "name": "WIRES Wildlife Rescue", "description": "Australia's largest wildlife rescue organization", "focus": "Emergency rescue" },
+        { "name": "Taronga Conservation Society", "description": "Breeding programs for critically endangered species", "focus": "Captive breeding" }
+      ],
+      "nativePlants": [
+        { "name": "Coastal Banksia", "scientificName": "Banksia integrifolia", "benefit": "Provides nectar for birds and possums" },
+        { "name": "Kangaroo Paw", "scientificName": "Anigozanthos", "benefit": "Attracts native bees and honeyeaters" },
+        { "name": "Lilly Pilly", "scientificName": "Syzygium", "benefit": "Fruit for native birds and small mammals" },
+        { "name": "Grevillea", "scientificName": "Grevillea robusta", "benefit": "Year-round nectar source for native bees" },
+        { "name": "Bottlebrush", "scientificName": "Callistemon", "benefit": "Critical food source for honeyeaters" }
+      ]
+    },
+    "VIC": {
+      "threatenedSpecies": [
+        { "name": "Leadbeater's Possum", "image": "🐭", "count": 1 },
+        { "name": "Helmeted Honeyeater", "image": "🐦", "count": 1 },
+        { "name": "Eastern Barred Bandicoot", "image": "🦡", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "Zoos Victoria", "description": "Leading recovery programs for VIC's most threatened species", "focus": "Species recovery" },
+        { "name": "Trust for Nature", "description": "Private land conservation and covenant programs", "focus": "Land protection" },
+        { "name": "Wildlife Victoria", "description": "24/7 emergency wildlife rescue and rehabilitation", "focus": "Wildlife rescue" }
+      ],
+      "nativePlants": [
+        { "name": "Silver Banksia", "scientificName": "Banksia marginata", "benefit": "Essential for small marsupials" },
+        { "name": "Victorian Christmas Bush", "scientificName": "Prostanthera lasianthos", "benefit": "Habitat for native insects" },
+        { "name": "Kangaroo Grass", "scientificName": "Themeda triandra", "benefit": "Critical for grassland ecosystems" },
+        { "name": "Common Correa", "scientificName": "Correa reflexa", "benefit": "Winter nectar for honeyeaters" },
+        { "name": "River Bottlebrush", "scientificName": "Callistemon sieberi", "benefit": "Wetland habitat restoration" }
+      ]
+    },
+    "QLD": {
+      "threatenedSpecies": [
+        { "name": "Northern Quoll", "image": "🦝", "count": 1 },
+        { "name": "Richmond Birdwing Butterfly", "image": "🦋", "count": 1 },
+        { "name": "Mary River Turtle", "image": "🐢", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "Queensland Trust for Nature", "description": "Protecting rainforest and reef habitats", "focus": "Habitat conservation" },
+        { "name": "Reef Restoration Foundation", "description": "Community-based coral reef restoration", "focus": "Marine conservation" },
+        { "name": "Wildlife Queensland", "description": "Citizen science and habitat protection programs", "focus": "Community engagement" }
+      ],
+      "nativePlants": [
+        { "name": "Rainforest Lilly Pilly", "scientificName": "Acmena smithii", "benefit": "Food for fruit-eating birds" },
+        { "name": "Queensland Firewheel Tree", "scientificName": "Stenocarpus sinuatus", "benefit": "Nectar for native bees" },
+        { "name": "Native Ginger", "scientificName": "Alpinia caerulea", "benefit": "Shade habitat for frogs" },
+        { "name": "Tuckeroo", "scientificName": "Cupaniopsis anacardioides", "benefit": "Coastal bird habitat" },
+        { "name": "Bunya Pine", "scientificName": "Araucaria bidwillii", "benefit": "Ancient food source for wildlife" }
+      ]
+    },
+    "WA": {
+      "threatenedSpecies": [
+        { "name": "Numbat", "image": "🐿️", "count": 1 },
+        { "name": "Western Swamp Tortoise", "image": "🐢", "count": 1 },
+        { "name": "Carnaby's Black Cockatoo", "image": "🦜", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "Perth NRM", "description": "Urban bushland and wetland restoration", "focus": "Urban conservation" },
+        { "name": "Australian Wildlife Conservancy", "description": "Large-scale feral predator control programs", "focus": "Predator management" },
+        { "name": "BirdLife WA", "description": "Black cockatoo habitat protection", "focus": "Bird conservation" }
+      ],
+      "nativePlants": [
+        { "name": "Jarrah", "scientificName": "Eucalyptus marginata", "benefit": "Critical nesting habitat for cockatoos" },
+        { "name": "Marri", "scientificName": "Corymbia calophylla", "benefit": "Food source for black cockatoos" },
+        { "name": "Red Flowering Gum", "scientificName": "Corymbia ficifolia", "benefit": "Nectar for honeyeaters" },
+        { "name": "Prickly Moses", "scientificName": "Acacia pulchella", "benefit": "Shelter for small birds" },
+        { "name": "Coastal Rosemary", "scientificName": "Westringia fruticosa", "benefit": "Coastal habitat stabilization" }
+      ]
+    },
+    "SA": {
+      "threatenedSpecies": [
+        { "name": "Southern Hairy-nosed Wombat", "image": "🦫", "count": 1 },
+        { "name": "Yellow-footed Rock Wallaby", "image": "🦘", "count": 1 },
+        { "name": "Plains-wanderer", "image": "🐦", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "Nature Foundation SA", "description": "Arid zone conservation and pastoral land protection", "focus": "Landscape conservation" },
+        { "name": "Trees For Life", "description": "Community revegetation across SA", "focus": "Revegetation" },
+        { "name": "Adelaide & Mount Lofty Ranges NRM", "description": "Regional biodiversity programs", "focus": "Regional coordination" }
+      ],
+      "nativePlants": [
+        { "name": "SA Blue Gum", "scientificName": "Eucalyptus leucoxylon", "benefit": "Food for parrots and possums" },
+        { "name": "Drooping Sheoak", "scientificName": "Allocasuarina verticillata", "benefit": "Habitat for glossy black cockatoos" },
+        { "name": "Native Pine", "scientificName": "Callitris preissii", "benefit": "Shelter for small mammals" },
+        { "name": "Purple Flag", "scientificName": "Patersonia occidentalis", "benefit": "Wetland habitat plant" },
+        { "name": "Hop Bush", "scientificName": "Dodonaea viscosa", "benefit": "Food for native birds" }
+      ]
+    },
+    "TAS": {
+      "threatenedSpecies": [
+        { "name": "Tasmanian Devil", "image": "😈", "count": 1 },
+        { "name": "Orange-bellied Parrot", "image": "🦜", "count": 1 },
+        { "name": "Spotted-tailed Quoll", "image": "🦝", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "Save the Tasmanian Devil Program", "description": "Devil facial tumor disease research and breeding", "focus": "Disease management" },
+        { "name": "Birdlife Tasmania", "description": "Orange-bellied Parrot recovery program", "focus": "Parrot conservation" },
+        { "name": "Bush Heritage Tasmania", "description": "Old-growth forest protection", "focus": "Forest conservation" }
+      ],
+      "nativePlants": [
+        { "name": "Tasmanian Blue Gum", "scientificName": "Eucalyptus globulus", "benefit": "Habitat for swift parrots" },
+        { "name": "Silver Wattle", "scientificName": "Acacia dealbata", "benefit": "Food source for honeyeaters" },
+        { "name": "Tasmanian Waratah", "scientificName": "Telopea truncata", "benefit": "Nectar for native bees" },
+        { "name": "Cutting Grass", "scientificName": "Gahnia grandis", "benefit": "Habitat for ground birds" },
+        { "name": "Mountain Pepper", "scientificName": "Tasmannia lanceolata", "benefit": "Food for fruit-eating birds" }
+      ]
+    },
+    "NT": {
+      "threatenedSpecies": [
+        { "name": "Northern Quoll", "image": "🦝", "count": 1 },
+        { "name": "Gouldian Finch", "image": "🌈", "count": 1 },
+        { "name": "Arnhem Land Rock-rat", "image": "🐀", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "Territory NRM", "description": "Indigenous ranger programs and fire management", "focus": "Cultural land management" },
+        { "name": "Tiwi Land Rangers", "description": "Traditional burning to protect biodiversity", "focus": "Indigenous conservation" },
+        { "name": "NT Wildlife Care", "description": "Rescue and rehabilitation of native animals", "focus": "Wildlife rescue" }
+      ],
+      "nativePlants": [
+        { "name": "Woollybutt", "scientificName": "Eucalyptus miniata", "benefit": "Nesting sites for parrots" },
+        { "name": "Pandanus", "scientificName": "Pandanus spiralis", "benefit": "Food and shelter for wildlife" },
+        { "name": "Kapok Bush", "scientificName": "Cochlospermum fraseri", "benefit": "Nectar for native bees" },
+        { "name": "Native Hibiscus", "scientificName": "Hibiscus tiliaceus", "benefit": "Wetland bird habitat" },
+        { "name": "Darwin Woollybutt", "scientificName": "Eucalyptus miniata", "benefit": "Habitat tree for possums" }
+      ]
+    },
+    "ACT": {
+      "threatenedSpecies": [
+        { "name": "Grassland Earless Dragon", "image": "🦎", "count": 1 },
+        { "name": "Golden Sun Moth", "image": "🦋", "count": 1 },
+        { "name": "Regent Honeyeater", "image": "🐦", "count": 1 }
+      ],
+      "organizations": [
+        { "name": "ACT ParkCare", "description": "Community bush regeneration across Canberra", "focus": "Community conservation" },
+        { "name": "Friends of Grasslands", "description": "Protecting critically endangered grassland ecosystems", "focus": "Grassland conservation" },
+        { "name": "Conservation Council ACT", "description": "Advocacy for biodiversity protection", "focus": "Policy advocacy" }
+      ],
+      "nativePlants": [
+        { "name": "Kangaroo Grass", "scientificName": "Themeda triandra", "benefit": "Essential grassland ecosystem plant" },
+        { "name": "Yellow Box", "scientificName": "Eucalyptus melliodora", "benefit": "Critical for regent honeyeaters" },
+        { "name": "Wallaby Grass", "scientificName": "Austrodanthonia", "benefit": "Habitat for grassland invertebrates" },
+        { "name": "Snow Gum", "scientificName": "Eucalyptus pauciflora", "benefit": "Alpine habitat restoration" },
+        { "name": "Silver Wattle", "scientificName": "Acacia dealbata", "benefit": "Food source for woodland birds" }
+      ]
+    }
+  }
+}
+

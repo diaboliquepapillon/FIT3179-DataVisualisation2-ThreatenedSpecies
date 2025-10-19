@@ -1,0 +1,351 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core colors - eco-inspired palette */
+    --background: 40 30% 95%;        /* #f5f2eb - warm beige */
+    --foreground: 25 40% 20%;        /* #4a3422 - deep brown */
+    --card: 0 0% 100%;               /* white */
+    --card-foreground: 25 40% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 40% 20%;
+    
+    /* Primary - sage green */
+    --primary: 140 25% 45%;          /* #568567 - sage green */
+    --primary-foreground: 0 0% 98%;
+    
+    /* Secondary - coral red */
+    --secondary: 15 75% 60%;         /* #eb7963 - warm coral */
+    --secondary-foreground: 0 0% 98%;
+    
+    /* Accent - sand beige */
+    --accent: 35 35% 70%;            /* #c5b79a - sand beige */
+    --accent-foreground: 25 40% 20%;
+    
+    /* Muted */
+    --muted: 38 20% 90%;
+    --muted-foreground: 30 10% 40%;  /* #555 equivalent */
+    
+    /* Border */
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 100 15% 32%;
+    
+    /* Destructive */
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --radius: 0.5rem;
+
+    /* Data visualization specific colors - eco palette */
+    --viz-sage: 140 25% 45%;         /* sage green */
+    --viz-coral: 15 75% 60%;         /* coral red */
+    --viz-sand: 35 35% 70%;          /* sand beige */
+    --viz-terracotta: 15 55% 50%;    /* terracotta */
+    --viz-eucalyptus: 155 30% 55%;   /* eucalyptus */
+    --viz-ochre: 35 60% 50%;         /* ochre */
+    --viz-ocean: 200 60% 50%;        /* ocean blue */
+    --viz-clay: 25 45% 40%;          /* clay brown */
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(140 25% 45% / 0.1), hsl(35 35% 70% / 0.1));
+    --gradient-chapter: linear-gradient(to right, hsl(140 25% 45% / 0.05), hsl(15 75% 60% / 0.05));
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Utility Classes for Animations */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate 60s linear infinite;
+}
+
+.animate-scale-in {
+  animation: fadeIn 0.4s ease-out, pulse 0.4s ease-out;
+}
+
+/* Parallax Depth Layers */
+.parallax-layer-far {
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.parallax-layer-mid {
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.parallax-layer-near {
+  z-index: 2;
+  opacity: 0.7;
+}
+
+/* Spotlight Effect */
+.spotlight-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.spotlight-circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.7) 70%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+}
+
+/* Achievement Badge Styles */
+.achievement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, hsl(140 25% 45% / 0.1), hsl(35 35% 70% / 0.1));
+  border: 2px solid hsl(140 25% 45% / 0.3);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.achievement-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-badge.unlocked {
+  background: linear-gradient(135deg, hsl(140 25% 45% / 0.2), hsl(35 35% 70% / 0.2));
+  border-color: hsl(140 25% 45%);
+  animation: pulse 0.5s ease-out;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, hsl(35 15% 85%) 25%, hsl(35 15% 90%) 50%, hsl(35 15% 85%) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0.5rem;
+}
+
+/* Glassmorphism Effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+/* Drag and Drop Zones */
+.drop-zone {
+  transition: all 0.3s ease;
+  border: 2px dashed hsl(140 25% 45% / 0.3);
+}
+
+.drop-zone.drag-over {
+  background: hsl(140 25% 45% / 0.1);
+  border-color: hsl(140 25% 45%);
+  transform: scale(1.02);
+}
+
+.drop-zone.correct {
+  background: hsl(140 70% 85%);
+  border-color: hsl(140 70% 50%);
+  animation: pulse 0.5s ease-out;
+}
+
+.drop-zone.incorrect {
+  animation: shake 0.5s ease-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, hsl(140 25% 45%), hsl(15 75% 60%));
+  transform-origin: left;
+  z-index: 100;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(40 30% 95%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(140 25% 45%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(140 25% 35%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

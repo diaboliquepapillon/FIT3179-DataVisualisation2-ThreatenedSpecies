@@ -1,0 +1,60 @@
+{
+  "threats": [
+    {
+      "name": "Habitat Loss",
+      "description": "Land clearing, urban development, and agricultural expansion",
+      "color": "#d62828",
+      "flows": [
+        { "target": "Mammals", "value": 280, "percentage": 37 },
+        { "target": "Birds", "value": 195, "percentage": 26 },
+        { "target": "Reptiles", "value": 165, "percentage": 22 },
+        { "target": "Amphibians", "value": 75, "percentage": 10 },
+        { "target": "Fish", "value": 35, "percentage": 5 }
+      ]
+    },
+    {
+      "name": "Invasive Species",
+      "description": "Feral cats, foxes, cane toads, and introduced plants",
+      "color": "#f77f00",
+      "flows": [
+        { "target": "Mammals", "value": 245, "percentage": 34 },
+        { "target": "Birds", "value": 180, "percentage": 25 },
+        { "target": "Reptiles", "value": 140, "percentage": 20 },
+        { "target": "Amphibians", "value": 95, "percentage": 13 },
+        { "target": "Fish", "value": 60, "percentage": 8 }
+      ]
+    },
+    {
+      "name": "Climate Change",
+      "description": "Rising temperatures, changing rainfall, extreme weather events",
+      "color": "#fcbf49",
+      "flows": [
+        { "target": "Mammals", "value": 85, "percentage": 18 },
+        { "target": "Birds", "value": 115, "percentage": 24 },
+        { "target": "Reptiles", "value": 95, "percentage": 20 },
+        { "target": "Amphibians", "value": 110, "percentage": 23 },
+        { "target": "Fish", "value": 75, "percentage": 15 }
+      ]
+    },
+    {
+      "name": "Disease",
+      "description": "Chytrid fungus, Devil facial tumor, and emerging pathogens",
+      "color": "#e63946",
+      "flows": [
+        { "target": "Mammals", "value": 45, "percentage": 25 },
+        { "target": "Birds", "value": 30, "percentage": 17 },
+        { "target": "Reptiles", "value": 20, "percentage": 11 },
+        { "target": "Amphibians", "value": 75, "percentage": 42 },
+        { "target": "Fish", "value": 10, "percentage": 5 }
+      ]
+    }
+  ],
+  "speciesGroups": {
+    "Mammals": { "total": 655, "criticallyEndangered": 85, "endangered": 265, "vulnerable": 305 },
+    "Birds": { "total": 520, "criticallyEndangered": 45, "endangered": 185, "vulnerable": 290 },
+    "Reptiles": { "total": 420, "criticallyEndangered": 25, "endangered": 145, "vulnerable": 250 },
+    "Amphibians": { "total": 355, "criticallyEndangered": 55, "endangered": 135, "vulnerable": 165 },
+    "Fish": { "total": 180, "criticallyEndangered": 15, "endangered": 65, "vulnerable": 100 }
+  }
+}
+
