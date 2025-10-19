@@ -818,7 +818,7 @@ const Index = () => {
           <h2 className="text-2xl font-display font-bold text-foreground mb-6">About This Visualisation</h2>
           <div className="space-y-4 text-foreground/80">
             <p className="leading-relaxed">
-              This interactive data storytelling experience was created for <strong>FIT3179 Data Visualisation 2</strong> at Monash University. 
+              This interactive data storytelling experience was created for <strong>FIT3179 Data Visualisation 2</strong>. 
               It transforms EPBC Act threatened species data into an emotionally engaging narrative designed to connect Australian students 
               with conservation challenges in their home states.
             </p>
