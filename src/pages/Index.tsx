@@ -580,6 +580,47 @@ const Index = () => {
           highlight="Victoria has more 'Vulnerable' species. Early intervention now could prevent future crises!"
         />
 
+        {/* Quick Filters - Chapter 2 */}
+        <div className="mb-6 p-4 bg-primary/5 border-2 border-primary/20 rounded-xl">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <Filter className="h-5 w-5 text-primary" />
+              <span className="text-sm font-semibold text-foreground">Quick Filters:</span>
+            </div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+              <Select value={selectedGroup} onValueChange={setSelectedGroup}>
+                <SelectTrigger className="w-full sm:w-48 bg-white shadow-sm border-2 border-border hover:border-primary/50 transition-colors rounded-lg text-sm" aria-label="Quick filter by species group">
+                  <SelectValue placeholder="All Groups" />
+                </SelectTrigger>
+                <SelectContent className="bg-white z-50 rounded-lg border-2">
+                  <SelectItem value="All">All Groups</SelectItem>
+                  <SelectItem value="Mammals">🐨 Mammals</SelectItem>
+                  <SelectItem value="Birds">🦜 Birds</SelectItem>
+                  <SelectItem value="Reptiles">🐍 Reptiles</SelectItem>
+                  <SelectItem value="Amphibians">🐸 Amphibians</SelectItem>
+                  <SelectItem value="Fish">🐠 Fish</SelectItem>
+                </SelectContent>
+              </Select>
+              <div className="flex flex-wrap gap-2">
+                {['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT'].map((state) => (
+                  <button
+                    key={state}
+                    onClick={() => setSelectedState(state === selectedState ? null : state)}
+                    className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                      selectedState === state
+                        ? 'bg-primary text-white shadow-md'
+                        : 'bg-white border-2 border-border hover:border-primary/50 text-foreground'
+                    }`}
+                    aria-label={`Quick filter by ${state}`}
+                  >
+                    {state}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Biodiversity Clock & Species Pulse */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <div className="chart-container">

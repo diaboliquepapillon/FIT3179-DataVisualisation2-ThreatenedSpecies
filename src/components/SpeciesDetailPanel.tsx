@@ -93,7 +93,7 @@ export const SpeciesDetailPanel = ({ selectedState, selectedGroup }: SpeciesDeta
           
           const cols = parseCSVLine(row);
           const hasState = cols[stateCol] === 'Yes' || cols[stateCol] === '-';
-          const className = cols[23]; // Class column
+          const className = cols[24]; // Class column (corrected from 23)
           const matchesGroup = matchesAnimalGroup(className, selectedGroup);
           
           if (hasState && matchesGroup && filtered.length < 15) {
@@ -101,7 +101,7 @@ export const SpeciesDetailPanel = ({ selectedState, selectedGroup }: SpeciesDeta
               scientificName: cols[0] || 'Unknown',
               commonName: cols[1] || 'No common name',
               status: cols[3] || 'Not Listed',
-              family: cols[27] || 'Unknown',
+              family: cols[28] || 'Unknown', // Family column (corrected from 27)
               class: className || 'Unknown',
             });
           }
