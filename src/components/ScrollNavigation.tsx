@@ -11,12 +11,25 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isNavigationVisible, setIsNavigationVisible] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
 
   const sections = [
     { id: 'chapter-discover', label: 'Discover', icon: Compass },
     { id: 'chapter-understand', label: 'Understand', icon: Target },
     { id: 'chapter-act', label: 'Take Action', icon: Rocket },
   ];
+
+  // Auto-hide navigation after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isHovering) {
+        setIsNavigationVisible(false);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [isHovering]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,14 +87,37 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
         />
       </div>
 
+      {/* Show/Hide Trigger Button (when navigation is hidden) */}
+      <AnimatePresence>
+        {!isNavigationVisible && (
+          <motion.button
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -100, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            onClick={() => setIsNavigationVisible(true)}
+            onMouseEnter={() => setIsNavigationVisible(true)}
+            className="hidden lg:flex fixed left-0 top-1/2 -translate-y-1/2 z-40 items-center justify-center w-8 h-20 bg-primary/90 hover:bg-primary text-white rounded-r-xl shadow-lg hover:shadow-xl transition-all hover:w-10"
+            aria-label="Show navigation menu"
+          >
+            <span className="text-lg">›</span>
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* Chapter Navigation Sidebar */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="hidden lg:block fixed left-6 top-1/2 -translate-y-1/2 z-40"
-      >
-        <div className="bg-white/98 backdrop-blur-lg rounded-2xl border-2 border-primary/20 shadow-2xl p-2 min-w-[180px]">
+      <AnimatePresence>
+        {isNavigationVisible && (
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -100, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            className="hidden lg:block fixed left-6 top-1/2 -translate-y-1/2 z-40"
+          >
+            <div className="bg-white/98 backdrop-blur-lg rounded-2xl border-2 border-primary/20 shadow-2xl p-2 min-w-[180px]">
           <div className="space-y-1">
             {sections.map((section) => {
               const Icon = section.icon;
@@ -135,6 +171,8 @@ export const ScrollNavigation = ({ onFilterClick }: ScrollNavigationProps) => {
           </div>
         </div>
       </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Back to Top Button */}
       <AnimatePresence>

@@ -24,6 +24,7 @@ import { WhatIfSimulator } from '@/components/WhatIfSimulator';
 import { LocalActionHub } from '@/components/LocalActionHub';
 import { AchievementTracker } from '@/components/AchievementTracker';
 import { SpeciesDetailPanel } from '@/components/SpeciesDetailPanel';
+import { ScrollNavigation } from '@/components/ScrollNavigation';
 
 // Hooks
 import { useAchievements } from '@/hooks/useAchievements';
@@ -279,6 +280,9 @@ const Index = () => {
       
       {/* Animal of the Day - Floating Card */}
       {introComplete && <AnimalOfTheDay />}
+      
+      {/* Scroll Navigation - Auto-hides after 5 seconds */}
+      {introComplete && <ScrollNavigation />}
       
       <Navigation 
         achievementsUnlocked={unlockedCount}
