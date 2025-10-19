@@ -22,13 +22,10 @@ import { BiodiversityClock } from '@/components/BiodiversityClock';
 import { ThreatFlowChartSimple } from '@/components/ThreatFlowChartSimple';
 import { WhatIfSimulator } from '@/components/WhatIfSimulator';
 import { LocalActionHub } from '@/components/LocalActionHub';
-import { PledgeWall } from '@/components/PledgeWall';
-import { ShareGenerator } from '@/components/ShareGenerator';
 import { AchievementTracker } from '@/components/AchievementTracker';
 
 // Hooks
 import { useAchievements } from '@/hooks/useAchievements';
-import { useSoundEffects } from '@/hooks/useSoundEffects';
 
 const Index = () => {
   const [selectedGroup, setSelectedGroup] = useState<string>('All');
@@ -40,7 +37,6 @@ const Index = () => {
 
   // Hooks
   const { unlockAchievement, unlockedCount, totalCount } = useAchievements();
-  const { playBirdChirp, isMuted, toggleMute } = useSoundEffects();
 
   // Track exploration progress
   useEffect(() => {
@@ -184,9 +180,6 @@ const Index = () => {
       );
       // Toggle: if already selected, deselect
       setSelectedState(prev => prev === stateAbbrev ? null : stateAbbrev || null);
-      
-      // Play sound effect on state click
-      playBirdChirp();
     }
   };
 
@@ -286,8 +279,6 @@ const Index = () => {
       {introComplete && <AnimalOfTheDay />}
       
       <Navigation 
-        isMuted={isMuted}
-        onToggleMute={toggleMute}
         achievementsUnlocked={unlockedCount}
         totalAchievements={totalCount}
       />
@@ -304,7 +295,7 @@ const Index = () => {
               🐨 🦜 🐍 🐠
             </p>
             <p className="text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
-              Australia is home to wildlife found nowhere else on Earth—but many species are fighting for survival. 
+              Australia is home to wildlife found nowhere else on Earth, but many species are fighting for survival. 
               Join us on an interactive journey through threatened species data to discover 
               <strong className="text-foreground"> what's happening in your state</strong> and 
               <strong className="text-foreground"> what you can do about it</strong>.
@@ -424,7 +415,7 @@ const Index = () => {
               {selectedState === 'NSW' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">New South Wales carries the heaviest threatened species burden.</strong> 747 species face threats from Australia's most densely populated state. Over 75% of original vegetation is gone—replaced by cities, farms, and infrastructure fragmenting critical wildlife corridors.
+                    <strong className="text-primary">New South Wales carries the heaviest threatened species burden.</strong> 747 species face threats from Australia's most densely populated state. Over 75% of original vegetation is gone, replaced by cities, farms, and infrastructure fragmenting critical wildlife corridors.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Join local Landcare groups, plant native gardens to create urban wildlife corridors, or support rewilding initiatives like the Great Eastern Ranges.
@@ -434,7 +425,7 @@ const Index = () => {
               {selectedState === 'WA' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Western Australia is an endemism hotspot—and a conservation flashpoint.</strong> 610 threatened species include animals found nowhere else on Earth. Mining expansion, feral cats and foxes, and changing rainfall threaten unique desert and southwest forest ecosystems.
+                    <strong className="text-primary">Western Australia is an endemism hotspot and a conservation flashpoint.</strong> 610 threatened species include animals found nowhere else on Earth. Mining expansion, feral cats and foxes, and changing rainfall threaten unique desert and southwest forest ecosystems.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Support wildlife recovery programs like Western Shield, advocate for feral predator control, or donate to conservation groups protecting critical habitats.
@@ -444,7 +435,7 @@ const Index = () => {
               {selectedState === 'VIC' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Victoria's agricultural intensity creates early-warning species risks.</strong> With high proportions of 'Vulnerable' species, the state has a critical window for intervention before populations crash. Grasslands and wetlands—once covering vast areas—are now fragmented remnants.
+                    <strong className="text-primary">Victoria's agricultural intensity creates early-warning species risks.</strong> With high proportions of 'Vulnerable' species, the state has a critical window for intervention before populations crash. Grasslands and wetlands, once covering vast areas, are now fragmented remnants.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Protect remaining grasslands by supporting conservation trusts, create frog-friendly gardens for amphibians, or volunteer for wetland restoration projects.
@@ -474,7 +465,7 @@ const Index = () => {
               {selectedState === 'NT' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">The Northern Territory's remote ecosystems face silent threats.</strong> 151 species struggle with altered fire regimes, feral herbivores destroying habitats, and predatory mammals. Indigenous land management practices offer hope—traditional burning techniques protect biodiversity far better than European methods.
+                    <strong className="text-primary">The Northern Territory's remote ecosystems face silent threats.</strong> 151 species struggle with altered fire regimes, feral herbivores destroying habitats, and predatory mammals. Indigenous land management practices offer hope, as traditional burning techniques protect biodiversity far better than European methods.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Support Indigenous Protected Areas, advocate for traditional fire management expansion, or donate to NT wildlife recovery programs.
@@ -512,7 +503,7 @@ const Index = () => {
         <SectionNarrative
           icon={Map}
           title="The Geographic Story"
-          description="This interactive map shows where threatened animals are concentrated. Notice the 'hotspots'—NSW, QLD, and WA carry the heaviest conservation burden. Click any state to dive deeper into its unique challenges."
+          description="This interactive map shows where threatened animals are concentrated. Notice the 'hotspots': NSW, QLD, and WA carry the heaviest conservation burden. Click any state to dive deeper into its unique challenges."
           highlight="Your state matters! Each region faces different threats, from urban sprawl to climate shifts."
         />
         
@@ -531,7 +522,7 @@ const Index = () => {
           />
           <DidYouKnow 
             state="New South Wales"
-            fact="NSW has lost over 75% of its original vegetation, making it the most cleared state—directly impacting 747 threatened species."
+            fact="NSW has lost over 75% of its original vegetation, making it the most cleared state, directly impacting 747 threatened species."
           />
           <DidYouKnow 
             state="Western Australia"
@@ -557,8 +548,8 @@ const Index = () => {
         <SectionNarrative
           icon={BarChart3}
           title="The Severity Spectrum"
-          description="Conservation status isn't just bureaucratic jargon—it's a warning system. 'Critically Endangered' means extinction is imminent. 'Vulnerable' means we still have time to act. These charts reveal which states face the most dire situations."
-          highlight="Victoria has more 'Vulnerable' species—early intervention now could prevent future crises!"
+          description="Conservation status isn't just bureaucratic jargon, it's a warning system. 'Critically Endangered' means extinction is imminent. 'Vulnerable' means we still have time to act. These charts reveal which states face the most dire situations."
+          highlight="Victoria has more 'Vulnerable' species. Early intervention now could prevent future crises!"
         />
 
         {/* Biodiversity Clock & Species Pulse */}
@@ -648,10 +639,10 @@ const Index = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
           <DidYouKnow 
-            fact="Critically Endangered species like the Orange-bellied Parrot have fewer than 50 individuals left in the wild—every single bird counts!"
+            fact="Critically Endangered species like the Orange-bellied Parrot have fewer than 50 individuals left in the wild. Every single bird counts!"
           />
           <DidYouKnow 
-            fact="Climate change is accelerating—species that evolved over millions of years now have just decades to adapt or relocate."
+            fact="Climate change is accelerating. Species that evolved over millions of years now have just decades to adapt or relocate."
           />
         </div>
       </section>
@@ -661,8 +652,8 @@ const Index = () => {
         <SectionNarrative
           icon={Layers}
           title="Who's Most at Risk?"
-          description="Mammals steal the headlines, but birds, reptiles, and amphibians face equally dire situations. Filter by animal group above to see patterns—you might be surprised which species dominate your state's threatened list."
-          highlight="Use the dropdown filter to explore each animal group—find which protects the most mammals!"
+          description="Mammals steal the headlines, but birds, reptiles, and amphibians face equally dire situations. Filter by animal group above to see patterns. You might be surprised which species dominate your state's threatened list."
+          highlight="Use the dropdown filter to explore each animal group and find which protects the most mammals!"
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -685,13 +676,13 @@ const Index = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
           <DidYouKnow 
-            fact="Australia has more threatened mammal species than any other developed nation—a legacy of introduced predators like foxes and cats."
+            fact="Australia has more threatened mammal species than any other developed nation, a legacy of introduced predators like foxes and cats."
           />
           <DidYouKnow 
             fact="Reptiles often go unnoticed, but NSW alone has 87 threatened reptile species, including unique skinks and geckos."
           />
           <DidYouKnow 
-            fact="Birds act as 'ecosystem engineers'—losing them disrupts seed dispersal, pollination, and pest control."
+            fact="Birds act as 'ecosystem engineers'. Losing them disrupts seed dispersal, pollination, and pest control."
           />
         </div>
 
@@ -714,7 +705,7 @@ const Index = () => {
             icon={Target}
             title="The Power of Action"
             description="What if we acted now? This simulator shows the potential impact of conservation efforts. Adjust the sliders to see how reducing threats could save hundreds of species."
-            highlight="Even small actions create ripples—every percentage point of improvement matters!"
+            highlight="Even small actions create ripples. Every percentage point of improvement matters!"
           />
           <div className="mt-6">
             <WhatIfSimulator />
@@ -740,22 +731,6 @@ const Index = () => {
           <LocalActionHub selectedState={selectedState} />
         </div>
 
-        {/* Pledge Wall */}
-        <div className="mb-12">
-          <PledgeWall />
-        </div>
-
-        {/* Share Generator */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-display font-bold text-foreground mb-4 text-center">
-            Share Your Journey
-          </h3>
-          <ShareGenerator 
-            exploredStates={exploredStates}
-            selectedState={selectedState}
-            totalSpeciesViewed={Object.values(speciesData).reduce((sum, count) => sum + count, 0)}
-          />
-        </div>
       </section>
 
       {/* Call to Action - New Component */}
@@ -763,22 +738,22 @@ const Index = () => {
 
       {/* Regional Insights - Overview Cards */}
       {!selectedState && (
-        <section id="insights" className="container mx-auto px-6 lg:px-8 py-12 max-w-7xl">
-          <div className="mb-8 text-center animate-fade-in">
-            <h2 className="text-3xl font-display font-bold text-foreground mb-3">
+      <section id="insights" className="container mx-auto px-6 lg:px-8 py-12 max-w-7xl">
+        <div className="mb-8 text-center animate-fade-in">
+          <h2 className="text-3xl font-display font-bold text-foreground mb-3">
               Why This Matters to You
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
               These aren't just numbers. Every species plays a role in Australia's ecological tapestry.
-            </p>
-          </div>
+          </p>
+        </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in">
             <InsightCard
               icon={<TrendingDown className="h-6 w-6" />}
               state="Queensland"
               abbrev="QLD"
-              description="602 threatened species call QLD home—from rainforest frogs to reef fish. The state's tropical ecosystems are biodiversity hotspots facing habitat loss and climate impacts."
+              description="602 threatened species call QLD home, from rainforest frogs to reef fish. The state's tropical ecosystems are biodiversity hotspots facing habitat loss and climate impacts."
               color="bg-secondary/10 text-secondary border-secondary/20"
             />
             <InsightCard
@@ -799,7 +774,7 @@ const Index = () => {
               icon={<Waves className="h-6 w-6" />}
               state="Tasmania"
               abbrev="TAS"
-              description="Island isolation creates vulnerability—229 unique species face climate change, invasive species, and diseases like Devil facial tumour threatening ecosystems."
+              description="Island isolation creates vulnerability. 229 unique species face climate change, invasive species, and diseases like Devil facial tumour threatening ecosystems."
               color="bg-primary/10 text-primary border-primary/20"
             />
           </div>
@@ -828,11 +803,11 @@ const Index = () => {
           </h2>
           <p className="text-base lg:text-lg text-foreground leading-relaxed max-w-3xl mx-auto text-center">
             As Australian students, we inherit both the privilege and responsibility of protecting species found nowhere else on Earth. 
-            This isn't just environmental science—it's about identity, legacy, and the future we're building. 
+            This isn't just environmental science. It's about identity, legacy, and the future we're building. 
             Every koala, frog, and parrot lost diminishes what makes Australia uniquely ours. 
             Data literacy empowers you to see beyond headlines, question policies, and advocate for evidence-based conservation. 
             Your generation will determine whether these animals survive or become museum exhibits. 
-            <strong className="text-primary"> The question isn't whether you can make a difference—it's whether you will.</strong>
+            <strong className="text-primary"> The question isn't whether you can make a difference, it's whether you will.</strong>
           </p>
         </div>
       </section>
