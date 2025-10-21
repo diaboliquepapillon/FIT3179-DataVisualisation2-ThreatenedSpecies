@@ -64,8 +64,8 @@ export const GroupedBarChart = ({ selectedGroup, selectedStateName }: GroupedBar
         type: 'nominal',
         title: 'Conservation Status',
         scale: {
-          domain: ['Critically Endangered', 'Endangered', 'Vulnerable'],
-          range: ['#b30000', '#fc8d59', '#fcbf49'],
+          domain: ['Critically Endangered', 'Endangered', 'Vulnerable', 'Conservation Dependent', 'Extinct in the wild', 'Extinct'],
+          range: ['#b30000', '#fc8d59', '#fcbf49', '#7fcdbb', '#666666', '#2d2d2d'],
         },
         legend: {
           titleFont: 'Inter',

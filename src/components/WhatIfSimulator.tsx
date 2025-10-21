@@ -9,7 +9,7 @@ export const WhatIfSimulator = () => {
   const [predatorControl, setPredatorControl] = useState(0);
   const [climateAction, setClimateAction] = useState(0);
 
-  const baselineSpecies = 2130;
+  const baselineSpecies = 749;
   
   // Calculate potential recovery based on reductions
   const calculateRecovery = () => {
@@ -34,7 +34,7 @@ export const WhatIfSimulator = () => {
           What If We Act Now?
         </h3>
         <p className="text-muted-foreground">
-          Adjust the sliders to simulate the impact of conservation efforts
+          Adjust the sliders to simulate the impact of conservation efforts on threatened animal species
         </p>
       </div>
 
@@ -50,7 +50,7 @@ export const WhatIfSimulator = () => {
             <Slider
               value={[habitatReduction]}
               onValueChange={(value) => setHabitatReduction(value[0])}
-              max={50}
+              max={100}
               step={5}
               className="w-full"
             />
@@ -75,7 +75,7 @@ export const WhatIfSimulator = () => {
             <Slider
               value={[predatorControl]}
               onValueChange={(value) => setPredatorControl(value[0])}
-              max={50}
+              max={100}
               step={5}
               className="w-full"
             />
@@ -100,7 +100,7 @@ export const WhatIfSimulator = () => {
             <Slider
               value={[climateAction]}
               onValueChange={(value) => setClimateAction(value[0])}
-              max={50}
+              max={100}
               step={5}
               className="w-full"
             />
@@ -130,7 +130,7 @@ export const WhatIfSimulator = () => {
                 <div className="flex items-center justify-center gap-4">
                   <div>
                     <p className="text-4xl font-bold text-green-600">{recoveredSpecies}</p>
-                    <p className="text-sm text-muted-foreground">species could recover</p>
+                    <p className="text-sm text-muted-foreground">animal species could recover</p>
                   </div>
                   <div className="text-3xl">→</div>
                   <div>
@@ -149,16 +149,16 @@ export const WhatIfSimulator = () => {
                   </p>
                 ) : recoveryPercent < 10 ? (
                   <p className="text-sm text-foreground">
-                    Every action counts! Even small efforts can save dozens of species from extinction.
+                    Every action counts! Even small efforts can save dozens of animal species from extinction.
                   </p>
                 ) : recoveryPercent < 25 ? (
                   <p className="text-sm text-foreground">
-                    💚 Good start! With sustained effort, hundreds of species could be saved.
+                    💚 Good start! With sustained effort, hundreds of animal species could be saved.
                   </p>
                 ) : (
                   <p className="text-sm text-foreground">
                     🌟 <strong>Amazing!</strong> This level of action could transform Australia's biodiversity future. 
-                    Over {recoveredSpecies} species could move from threatened to stable populations!
+                    Over {recoveredSpecies} animal species could move from threatened to stable populations!
                   </p>
                 )}
               </div>

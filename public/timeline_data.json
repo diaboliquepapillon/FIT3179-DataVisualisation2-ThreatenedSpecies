@@ -3,57 +3,57 @@
   "data": [
     {
       "year": 2000,
-      "totalSpecies": 1203,
-      "mammals": { "ce": 42, "en": 178, "vu": 215 },
-      "birds": { "ce": 28, "en": 125, "vu": 187 },
-      "reptiles": { "ce": 15, "en": 89, "vu": 156 },
-      "amphibians": { "ce": 32, "en": 78, "vu": 98 },
-      "fish": { "ce": 8, "en": 42, "vu": 70 }
+      "totalSpecies": 423,
+      "mammals": { "ce": 15, "en": 62, "vu": 75 },
+      "birds": { "ce": 10, "en": 44, "vu": 66 },
+      "reptiles": { "ce": 5, "en": 31, "vu": 55 },
+      "amphibians": { "ce": 11, "en": 27, "vu": 34 },
+      "fish": { "ce": 3, "en": 15, "vu": 25 }
     },
     {
       "year": 2005,
-      "totalSpecies": 1354,
-      "mammals": { "ce": 52, "en": 198, "vu": 238 },
-      "birds": { "ce": 32, "en": 142, "vu": 212 },
-      "reptiles": { "ce": 18, "en": 105, "vu": 178 },
-      "amphibians": { "ce": 38, "en": 95, "vu": 125 },
-      "fish": { "ce": 10, "en": 48, "vu": 83 }
+      "totalSpecies": 476,
+      "mammals": { "ce": 18, "en": 69, "vu": 84 },
+      "birds": { "ce": 11, "en": 50, "vu": 74 },
+      "reptiles": { "ce": 6, "en": 37, "vu": 62 },
+      "amphibians": { "ce": 13, "en": 33, "vu": 44 },
+      "fish": { "ce": 4, "en": 17, "vu": 29 }
     },
     {
       "year": 2010,
-      "totalSpecies": 1562,
-      "mammals": { "ce": 65, "en": 225, "vu": 268 },
-      "birds": { "ce": 38, "en": 165, "vu": 245 },
-      "reptiles": { "ce": 20, "en": 125, "vu": 212 },
-      "amphibians": { "ce": 45, "en": 115, "vu": 142 },
-      "fish": { "ce": 12, "en": 55, "vu": 87 }
+      "totalSpecies": 549,
+      "mammals": { "ce": 23, "en": 79, "vu": 94 },
+      "birds": { "ce": 13, "en": 58, "vu": 86 },
+      "reptiles": { "ce": 7, "en": 44, "vu": 74 },
+      "amphibians": { "ce": 16, "en": 40, "vu": 50 },
+      "fish": { "ce": 4, "en": 19, "vu": 31 }
     },
     {
       "year": 2015,
-      "totalSpecies": 1789,
-      "mammals": { "ce": 72, "en": 242, "vu": 285 },
-      "birds": { "ce": 42, "en": 172, "vu": 268 },
-      "reptiles": { "ce": 23, "en": 135, "vu": 235 },
-      "amphibians": { "ce": 50, "en": 125, "vu": 155 },
-      "fish": { "ce": 13, "en": 60, "vu": 95 }
+      "totalSpecies": 629,
+      "mammals": { "ce": 25, "en": 85, "vu": 100 },
+      "birds": { "ce": 15, "en": 60, "vu": 94 },
+      "reptiles": { "ce": 8, "en": 47, "vu": 83 },
+      "amphibians": { "ce": 18, "en": 44, "vu": 54 },
+      "fish": { "ce": 5, "en": 21, "vu": 33 }
     },
     {
       "year": 2020,
-      "totalSpecies": 1956,
-      "mammals": { "ce": 78, "en": 255, "vu": 298 },
-      "birds": { "ce": 44, "en": 180, "vu": 282 },
-      "reptiles": { "ce": 24, "en": 142, "vu": 245 },
-      "amphibians": { "ce": 53, "en": 132, "vu": 162 },
-      "fish": { "ce": 14, "en": 63, "vu": 98 }
+      "totalSpecies": 688,
+      "mammals": { "ce": 27, "en": 90, "vu": 105 },
+      "birds": { "ce": 15, "en": 63, "vu": 99 },
+      "reptiles": { "ce": 8, "en": 50, "vu": 86 },
+      "amphibians": { "ce": 19, "en": 46, "vu": 57 },
+      "fish": { "ce": 5, "en": 22, "vu": 34 }
     },
     {
       "year": 2025,
-      "totalSpecies": 2130,
-      "mammals": { "ce": 85, "en": 265, "vu": 305 },
-      "birds": { "ce": 45, "en": 185, "vu": 290 },
-      "reptiles": { "ce": 25, "en": 145, "vu": 250 },
-      "amphibians": { "ce": 55, "en": 135, "vu": 165 },
-      "fish": { "ce": 15, "en": 65, "vu": 100 }
+      "totalSpecies": 749,
+      "mammals": { "ce": 30, "en": 93, "vu": 107 },
+      "birds": { "ce": 16, "en": 65, "vu": 102 },
+      "reptiles": { "ce": 9, "en": 51, "vu": 88 },
+      "amphibians": { "ce": 19, "en": 47, "vu": 59 },
+      "fish": { "ce": 5, "en": 23, "vu": 35 }
     }
   ],
   "keyEvents": [

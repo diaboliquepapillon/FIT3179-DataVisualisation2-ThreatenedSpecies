@@ -58,7 +58,7 @@ export const TreemapChart = ({ selectedGroup, selectedStateName }: TreemapChartP
           titleFont: 'Inter',
           titleFontWeight: 600,
         },
-        sort: ['Critically Endangered', 'Endangered', 'Vulnerable'],
+        sort: ['Critically Endangered', 'Endangered', 'Vulnerable', 'Conservation Dependent', 'Extinct in the wild', 'Extinct'],
       },
       color: {
         field: 'total_count',

@@ -19,9 +19,12 @@ export const BiodiversityClock = ({ onAchievement }: BiodiversityClockProps) => 
     if (!svgRef.current) return;
 
     const data: ClockData[] = [
-      { status: 'Critically Endangered', count: 225, color: '#d62828' },
-      { status: 'Endangered', count: 795, color: '#f77f00' },
-      { status: 'Vulnerable', count: 1110, color: '#fcbf49' },
+      { status: 'Critically Endangered', count: 97, color: '#d62828' },
+      { status: 'Endangered', count: 228, color: '#f77f00' },
+      { status: 'Vulnerable', count: 375, color: '#fcbf49' },
+      { status: 'Conservation Dependent', count: 19, color: '#7fcdbb' },
+      { status: 'Extinct in the wild', count: 1, color: '#666666' },
+      { status: 'Extinct', count: 29, color: '#2d2d2d' },
     ];
 
     const width = 400;
@@ -94,7 +97,7 @@ export const BiodiversityClock = ({ onAchievement }: BiodiversityClockProps) => 
       .style('font-size', '2.5rem')
       .style('font-weight', 'bold')
       .style('fill', 'hsl(140 25% 45%)')
-      .text('2,130');
+      .text('749');
 
     svg
       .append('text')

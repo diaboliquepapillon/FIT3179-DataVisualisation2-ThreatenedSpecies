@@ -71,22 +71,22 @@ const Index = () => {
   // Derived state full name for filtering
   const selectedStateFull = selectedState ? stateNameMap[selectedState] : null;
 
-  // Map with hardcoded species data - more reliable approach
+  // Map with hardcoded species data - animals only
   const speciesData = {
-    'New South Wales': 747,
-    'Queensland': 602,
-    'Western Australia': 610,
-    'Victoria': 351,
-    'South Australia': 314,
-    'Tasmania': 229,
-    'Northern Territory': 151,
-    'Australian Capital Territory': 69
+    'New South Wales': 146,
+    'Queensland': 138,
+    'Western Australia': 98,
+    'Victoria': 111,
+    'South Australia': 106,
+    'Tasmania': 65,
+    'Northern Territory': 57,
+    'Australian Capital Territory': 27
   };
 
   const mapSpec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v6.4.1.json',
     title: {
-      text: 'Threatened Species Distribution Across Australia',
+      text: 'Threatened Animal Species Distribution Across Australia',
       fontSize: 16,
       font: 'Playfair Display',
       fontWeight: 700,
@@ -110,14 +110,14 @@ const Index = () => {
     },
     transform: [
       {
-        calculate: `datum.properties.STE_NAME21 === 'New South Wales' ? 747 : 
-                   datum.properties.STE_NAME21 === 'Queensland' ? 602 :
-                   datum.properties.STE_NAME21 === 'Western Australia' ? 610 :
-                   datum.properties.STE_NAME21 === 'Victoria' ? 351 :
-                   datum.properties.STE_NAME21 === 'South Australia' ? 314 :
-                   datum.properties.STE_NAME21 === 'Tasmania' ? 229 :
-                   datum.properties.STE_NAME21 === 'Northern Territory' ? 151 :
-                   datum.properties.STE_NAME21 === 'Australian Capital Territory' ? 69 : 0`,
+        calculate: `datum.properties.STE_NAME21 === 'New South Wales' ? 146 : 
+                   datum.properties.STE_NAME21 === 'Queensland' ? 138 :
+                   datum.properties.STE_NAME21 === 'Western Australia' ? 98 :
+                   datum.properties.STE_NAME21 === 'Victoria' ? 111 :
+                   datum.properties.STE_NAME21 === 'South Australia' ? 106 :
+                   datum.properties.STE_NAME21 === 'Tasmania' ? 65 :
+                   datum.properties.STE_NAME21 === 'Northern Territory' ? 57 :
+                   datum.properties.STE_NAME21 === 'Australian Capital Territory' ? 27 : 0`,
         as: 'species_count'
       },
       {
@@ -238,7 +238,7 @@ const Index = () => {
           titleFont: 'Open Sans',
           titleFontWeight: 600,
         },
-        sort: ['Critically Endangered', 'Endangered', 'Vulnerable'],
+        sort: ['Critically Endangered', 'Endangered', 'Vulnerable', 'Conservation Dependent', 'Extinct in the wild', 'Extinct'],
       },
       y: {
         field: 'total_count',
@@ -254,8 +254,8 @@ const Index = () => {
         field: 'status',
         type: 'nominal',
         scale: {
-          domain: ['Critically Endangered', 'Endangered', 'Vulnerable'],
-          range: ['#d62828', '#f77f00', '#fcbf49'],
+          domain: ['Critically Endangered', 'Endangered', 'Vulnerable', 'Conservation Dependent', 'Extinct in the wild', 'Extinct'],
+          range: ['#d62828', '#f77f00', '#fcbf49', '#7fcdbb', '#666666', '#2d2d2d'],
         },
         legend: null,
       },
@@ -393,15 +393,15 @@ const Index = () => {
               <span>🐠</span>
             </div>
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-10 px-4">
-              Australia is home to wildlife found nowhere else on Earth, but many species are fighting for survival. 
-              Join us on an interactive journey through threatened species data to discover 
+              Australia is home to wildlife found nowhere else on Earth, but many animal species are fighting for survival. 
+              Join us on an interactive journey through <strong>749 threatened animal species</strong> (mammals, birds, reptiles, amphibians, and fish) to discover 
               <strong className="text-primary font-semibold"> what's happening in your state</strong> and 
               <strong className="text-primary font-semibold"> what you can do about it</strong>.
             </p>
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-4">
               <div className="badge-modern badge-primary text-xs sm:text-sm">
                 📊 Interactive Data Story
-              </div>
+            </div>
               <div className="badge-modern badge-secondary text-xs sm:text-sm">
                 🗺️ Explore All States
               </div>
@@ -450,18 +450,18 @@ const Index = () => {
                 </SelectContent>
               </Select>
             </div>
-              {(selectedState || selectedGroup !== 'All') && (
-                <Button
-                  onClick={() => {
-                    setSelectedState(null);
-                    setSelectedGroup('All');
-                  }}
+            {(selectedState || selectedGroup !== 'All') && (
+              <Button
+                onClick={() => {
+                  setSelectedState(null);
+                  setSelectedGroup('All');
+                }}
                   className="bg-secondary hover:bg-secondary/90 text-white rounded-xl shadow-sm hover:shadow-md transition-all w-full sm:w-auto mt-2 sm:mt-0"
-                  size="sm"
-                >
+                size="sm"
+              >
                   Reset Filters ✕
-                </Button>
-              )}
+              </Button>
+            )}
           </div>
           
           {/* State Selector */}
@@ -496,7 +496,7 @@ const Index = () => {
           chapterNumber={1}
           icon={Compass}
           title="Discover"
-          subtitle="What's happening in your backyard? Let's explore where Australia's threatened species actually live."
+          subtitle="What's happening in your backyard? Let's explore where Australia's 749 threatened animal species actually live."
           emoji="🗺️"
         />
 
@@ -520,7 +520,7 @@ const Index = () => {
               {selectedState === 'QLD' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Queensland is Australia's threatened species capital.</strong> With 602 at-risk animals, the state faces a biodiversity crisis driven by land clearing (still the highest rate in Australia), coastal development pressures, and climate warming impacts on the Great Barrier Reef and tropical rainforests.
+                    <strong className="text-primary">Queensland is a threatened animal hotspot.</strong> With 138 at-risk animal species, the state faces a biodiversity crisis driven by land clearing (still the highest rate in Australia), coastal development pressures, and climate warming impacts on the Great Barrier Reef and tropical rainforests.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Support Queensland's Land Restoration Fund, volunteer for reef monitoring programs, or advocate for stronger land-clearing laws.
@@ -530,7 +530,7 @@ const Index = () => {
               {selectedState === 'NSW' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">New South Wales carries the heaviest threatened species burden.</strong> 747 species face threats from Australia's most densely populated state. Over 75% of original vegetation is gone, replaced by cities, farms, and infrastructure fragmenting critical wildlife corridors.
+                    <strong className="text-primary">New South Wales carries the heaviest threatened animal burden.</strong> 146 animal species face threats from Australia's most densely populated state. Over 75% of original vegetation is gone, replaced by cities, farms, and infrastructure fragmenting critical wildlife corridors.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Join local Landcare groups, plant native gardens to create urban wildlife corridors, or support rewilding initiatives like the Great Eastern Ranges.
@@ -540,7 +540,7 @@ const Index = () => {
               {selectedState === 'WA' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Western Australia is an endemism hotspot and a conservation flashpoint.</strong> 610 threatened species include animals found nowhere else on Earth. Mining expansion, feral cats and foxes, and changing rainfall threaten unique desert and southwest forest ecosystems.
+                    <strong className="text-primary">Western Australia is an endemism hotspot and a conservation flashpoint.</strong> 98 threatened animal species include creatures found nowhere else on Earth. Mining expansion, feral cats and foxes, and changing rainfall threaten unique desert and southwest forest ecosystems.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Support wildlife recovery programs like Western Shield, advocate for feral predator control, or donate to conservation groups protecting critical habitats.
@@ -560,7 +560,7 @@ const Index = () => {
               {selectedState === 'TAS' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">Tasmania's island ecosystems are uniquely vulnerable.</strong> 229 threatened species face compounding pressures: climate change warming habitats faster than species can adapt, invasive species disrupting food webs, and diseases like Devil facial tumour threatening iconic animals.
+                    <strong className="text-primary">Tasmania's island ecosystems are uniquely vulnerable.</strong> 65 threatened animal species face compounding pressures: climate change warming habitats faster than species can adapt, invasive species disrupting food webs, and diseases like Devil facial tumour threatening iconic animals.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Support Tasmanian Devil recovery programs, participate in citizen science to monitor invasive species, or donate to island conservation initiatives.
@@ -590,7 +590,7 @@ const Index = () => {
               {selectedState === 'ACT' && (
                 <>
                   <p className="text-foreground leading-relaxed mb-4">
-                    <strong className="text-primary">The ACT proves small territories face big conservation challenges.</strong> Despite covering just 2,358 km², 69 threatened species persist in habitat remnants squeezed between urban development. Grassland birds and woodland mammals need careful urban planning to survive.
+                    <strong className="text-primary">The ACT proves small territories face big conservation challenges.</strong> Despite covering just 2,358 km², 27 threatened animal species persist in habitat remnants squeezed between urban development. Grassland birds and woodland mammals need careful urban planning to survive.
                   </p>
                   <p className="text-muted-foreground text-base">
                     💚 <em>What you can do:</em> Participate in ACT ParkCare activities, create wildlife-friendly gardens in Canberra suburbs, or advocate for green corridors in urban planning.
@@ -627,7 +627,7 @@ const Index = () => {
           <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-primary/5 rounded-xl border border-primary/20">
             <p className="text-xs sm:text-sm text-center text-foreground font-medium">
               💡 <strong>Interactive:</strong> Click different states to explore regional data!
-            </p>
+          </p>
           </div>
         </div>
 
@@ -635,11 +635,11 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
           <DidYouKnow 
             state="Queensland"
-            fact="Queensland's 602 threatened species include unique rainforest frogs and reef fish found nowhere else on Earth."
+            fact="Queensland's 138 threatened animal species include unique rainforest frogs and reef fish found nowhere else on Earth."
           />
           <DidYouKnow 
             state="New South Wales"
-            fact="NSW has lost over 75% of its original vegetation, making it the most cleared state, directly impacting 747 threatened species."
+            fact="NSW has lost over 75% of its original vegetation, making it the most cleared state, directly impacting 146 threatened animal species."
           />
           <DidYouKnow 
             state="Western Australia"
@@ -773,7 +773,7 @@ const Index = () => {
               }
             }} />
             <p className="text-sm text-center mt-6 text-muted-foreground font-medium">
-              📈 The upward trend shows the growing number of species facing extinction threats
+              📈 The upward trend shows the growing number of animal species facing extinction threats (animals only: mammals, birds, reptiles, amphibians, fish)
             </p>
           </div>
         </div>
@@ -810,9 +810,9 @@ const Index = () => {
       <section className="container mx-auto section-container max-w-7xl gradient-section">
         <SectionNarrative
           icon={Layers}
-          title="Who's Most at Risk?"
-          description="Mammals steal the headlines, but birds, reptiles, and amphibians face equally dire situations. Filter by animal group above to see patterns. You might be surprised which species dominate your state's threatened list."
-          highlight="Use the dropdown filter to explore each animal group and find which protects the most mammals!"
+          title="Animal Groups: Who's Most at Risk?"
+          description="This analysis focuses exclusively on vertebrate animals (mammals, birds, reptiles, amphibians, and fish). While plants and invertebrates are also threatened, we're examining the 749 animal species to understand how threats affect different types of wildlife."
+          highlight="Use the dropdown filter to explore each animal group and discover patterns across Australia!"
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -857,8 +857,8 @@ const Index = () => {
         <div className="mt-12">
           <SectionNarrative
             icon={Layers}
-            title="The Chain of Threat"
-            description="Threats don't impact species equally. This visualization shows how habitat loss, invasive species, climate change, and disease each affect different animal groups."
+            title="How Threats Impact Wildlife"
+            description="Threats don't impact animal species equally. This visualization shows how habitat loss, invasive species, climate change, and disease each affect different animal groups across Australia's 749 threatened species."
             highlight="Understanding these connections helps us target conservation efforts where they'll have the most impact!"
           />
           <div className="mt-6">
@@ -920,28 +920,28 @@ const Index = () => {
               icon={<TrendingDown className="h-6 w-6" />}
               state="Queensland"
               abbrev="QLD"
-              description="602 threatened species call QLD home, from rainforest frogs to reef fish. The state's tropical ecosystems are biodiversity hotspots facing habitat loss and climate impacts."
+              description="138 threatened animal species call QLD home, from rainforest frogs to reef fish. The state's tropical ecosystems are biodiversity hotspots facing habitat loss and climate impacts."
               color="bg-secondary/10 text-secondary border-secondary/20"
             />
             <InsightCard
               icon={<AlertTriangle className="h-6 w-6" />}
               state="New South Wales"
               abbrev="NSW"
-              description="With 747 species at risk, NSW's urban sprawl and agricultural clearing have fragmented critical habitats. Coastal and woodland species are hit hardest."
+              description="With 146 animal species at risk, NSW's urban sprawl and agricultural clearing have fragmented critical habitats. Coastal and woodland species are hit hardest."
               color="bg-primary/10 text-primary border-primary/20"
             />
             <InsightCard
               icon={<ShieldAlert className="h-6 w-6" />}
               state="Western Australia"
               abbrev="WA"
-              description="610 endemic species found nowhere else face threats from mining and feral predators. WA's vast deserts hide irreplaceable biodiversity under pressure."
+              description="98 endemic animal species found nowhere else face threats from mining and feral predators. WA's vast deserts hide irreplaceable biodiversity under pressure."
               color="bg-accent/10 text-accent border-accent/20"
             />
             <InsightCard
               icon={<Waves className="h-6 w-6" />}
               state="Tasmania"
               abbrev="TAS"
-              description="Island isolation creates vulnerability. 229 unique species face climate change, invasive species, and diseases like Devil facial tumour threatening ecosystems."
+              description="Island isolation creates vulnerability. 65 unique animal species face climate change, invasive species, and diseases like Devil facial tumour threatening ecosystems."
               color="bg-primary/10 text-primary border-primary/20"
             />
           </div>
@@ -956,7 +956,7 @@ const Index = () => {
             🏆 Your Conservation Journey
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Track your progress as you explore Australia's threatened species. Unlock achievements and become a conservation champion!
+            Track your progress as you explore Australia's 749 threatened animal species. Unlock achievements and become a conservation champion!
           </p>
         </div>
         <AchievementTracker />
@@ -986,7 +986,7 @@ const Index = () => {
           <div className="space-y-4 text-foreground/80">
             <p className="leading-relaxed">
               This interactive data storytelling experience was created for <strong>FIT3179 Data Visualisation 2</strong>. 
-              It transforms EPBC Act threatened species data into an emotionally engaging narrative designed to connect Australian students 
+              It transforms EPBC Act data on 749 threatened animal species (mammals, birds, reptiles, amphibians, and fish) into an emotionally engaging narrative designed to connect Australian students 
               with conservation challenges in their home states.
             </p>
             <div className="border-l-4 border-primary pl-6 py-2">
